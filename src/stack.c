@@ -24,6 +24,8 @@ t_stack	*init_stack(int size)
 	if (stack->arr == NULL)
 		return (free_stack(stack), NULL);
 	stack->size = size;
+	stack->first = 0;
+	stack->last = 0;
 	stack->cur_size = 0;
 	return (stack);
 }
@@ -42,6 +44,8 @@ t_stack *clone_stack(t_stack *origin_stack)
 		clone_stack->arr[i] = origin_stack->arr[i];
 		i++;
 	}
+	clone_stack->first = origin_stack->first;
+	clone_stack->last = origin_stack->last;
 	clone_stack->cur_size = origin_stack->cur_size;
 	return (clone_stack);
 }

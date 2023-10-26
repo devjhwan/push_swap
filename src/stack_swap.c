@@ -15,12 +15,16 @@
 static void	swap(t_stack *stack)
 {
 	int	tmp;
+	int	first;
+	int second;
 
 	if (stack->cur_size >= 2)
 	{
-		tmp = stack->arr[0];
-		stack->arr[0] = stack->arr[1];
-		stack->arr[1] = tmp;		
+		first = stack->first;
+		second = (stack->first + 1) % stack->size;
+		tmp = stack->arr[first];
+		stack->arr[first] = stack->arr[second];
+		stack->arr[second] = tmp;		
 	}
 }
 

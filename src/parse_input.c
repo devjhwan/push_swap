@@ -74,11 +74,12 @@ static int	fill_stack(t_stack *stack_a, char *arg)
 			return (ERROR);
 		if (check_duplicate(stack_a, (int)num) == DUPLICATED)
 			return (ERROR);
-		stack_a->arr[stack_a->cur_size] = (int)num;
-		stack_a->cur_size++;
+		stack_a->arr[stack_a->last] = (int)num;
+		stack_a->last++;
 		if (arg[i] != ' ' && arg[i] != '\0')
 			return (ERROR);
 	}
+	stack_a->cur_size = stack_a->last;
 	return (SUCCESSFUL);
 }
 
