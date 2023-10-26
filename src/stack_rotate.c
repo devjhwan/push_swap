@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_push.c                                       :+:      :+:    :+:   */
+/*   stack_rotate.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 22:49:42 by junghwle          #+#    #+#             */
-/*   Updated: 2023/10/26 22:49:44 by junghwle         ###   ########.fr       */
+/*   Created: 2023/10/26 23:44:53 by junghwle          #+#    #+#             */
+/*   Updated: 2023/10/26 23:44:55 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push(t_stack *origin, t_stack *dest)
+void	rotate(t_stack *stack)
 {
-	if (origin->cur_size >= 1)
+	if (stack->cur_size >= 1)
 	{
-		dest->first = dest->first - 1;
-		if (dest->first < 0)
-			dest->first = dest->size - 1;
-		dest->arr[dest->first] = origin->arr[origin->first];
-		origin->first = (origin->first + 1) % origin->size;
-		dest->cur_size++;
-		origin->cur_size--;
+		stack->last = (stack->last + 1) % stack->size;
+		stack->arr[stack->last] = stack->arr[stack->first];
+		stack->first = (stack->first + 1) % stack->size;
 	}
 }
 
-void	pa(t_stack *stack_a, t_stack *stack_b)
+void	ra(t_stack *stack)
 {
-	push(stack_b, stack_a);
+	rotate(stack);
 }
 
-void	pb(t_stack *stack_a, t_stack *stack_b)
+void	rb(t_stack *stack)
 {
-	push(stack_a, stack_b);
+	rotate(stack);
+}
+
+void	rr(t_stack *stack_a, t_stack *stack_b)
+{
+	rotate(stack_a);
+	rotate(stack_b);
 }
