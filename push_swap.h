@@ -20,6 +20,9 @@ typedef struct s_stack
 	int	cur_size;
 }	t_stack;
 
-int	ft_putstr(char *str);
+int		ft_putstr(char *str);
+void	*parse_input(t_stack **stack_a, char **argv);
+t_stack	*init_stack(int size);
+void	free_stack(t_stack *stack);
 
 #endif

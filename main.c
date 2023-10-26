@@ -10,29 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <stdio.h>
 #include "push_swap.h"
 
-void	*parse_input(t_stack **stack_a, char **argv);
-
-void	free_stack(t_stack *stack)
+int	count_arguments(char **argv)
 {
-	free(stack->arr);
-	free(stack);
-}
+	int	i;
+	int	j;
+	int	count;
 
-t_stack	*init_stack(void)
-{
-	t_stack	*stack;
-
-	stack = (t_stack *)malloc(sizeof(t_stack));
-	if (stack == NULL)
-		return (NULL);
-	stack->arr = NULL;
-	stack->size = 0;
-	stack->cur_size = 0;
-	return (stack);
+	i = 1;
+	count = 0;
+	while (argv[i] != NULL)
+	{
+		j = 0;
+		while (argv[i][j] != '\0')
+		{
+			if (argv[i][j] == ' ')
+				j++;
+			else if (argv[i][j] != ' ')
+			{
+				count++;
+				while (argv[i][j] != ' ' && argv[i][j] != '\0')
+					j++;
+			}
+		}
+		i++;
+	}
+	return (count);
 }
 
 /*
@@ -43,10 +48,11 @@ t_stack	*init_stack(void)
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
+	t_stack *stack_b;
 
 	if (argc < 2)
 		return (0);
-	stack_a = init_stack();
+	stack_a = init_stack(count_arguments(argv));
 	if (stack_a == NULL)
 		return (0);
 	if (parse_input(&stack_a, argv) == NULL)
@@ -55,4 +61,7 @@ int	main(int argc, char **argv)
 		ft_putstr("Error\n");
 		return (0);
 	}
+	for (int i = 0; i < stack_a->size; i++)
+		printf("%d\n", stack_a->arr[i]);
+	stack_b = init_stack(stack_a->size);
 }

@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "push_swap.h"
 
 #define MAX 2147483648
@@ -23,34 +22,9 @@
 #define SUCCESSFUL 0
 #define ERROR 1
 
-int	count_arguments(char **argv)
-{
-	int	i;
-	int	j;
-	int	count;
+#define NULL 0
 
-	i = 1;
-	count = 0;
-	while (argv[i] != NULL)
-	{
-		j = 0;
-		while (argv[i][j] != '\0')
-		{
-			if (argv[i][j] == ' ')
-				j++;
-			else if (argv[i][j] != ' ')
-			{
-				count++;
-				while (argv[i][j] != ' ' && argv[i][j] != '\0')
-					j++;
-			}
-		}
-		i++;
-	}
-	return (count);
-}
-
-long long int	ft_atoi(char *arg, int *i)
+static long long int	ft_atoi(char *arg, int *i)
 {
 	long long int	num;
 	int				sign;
@@ -72,7 +46,7 @@ long long int	ft_atoi(char *arg, int *i)
 	return (num);
 }
 
-int	check_duplicate(t_stack *stack_a, int num)
+static int	check_duplicate(t_stack *stack_a, int num)
 {
 	int	i;
 
@@ -86,7 +60,7 @@ int	check_duplicate(t_stack *stack_a, int num)
 	return (CORRECT);
 }
 
-int	fill_stack(t_stack *stack_a, char *arg)
+static int	fill_stack(t_stack *stack_a, char *arg)
 {
 	int				i;
 	int				sign;
@@ -114,21 +88,14 @@ int	fill_stack(t_stack *stack_a, char *arg)
 
 void	*parse_input(t_stack **stack_a, char **argv)
 {
-	t_stack	*stack;
 	int		i;
 
-	stack = *stack_a;
-	stack->size = count_arguments(argv);
-	stack->arr = (int *)malloc(sizeof(int) * stack->size);
-	if (stack->arr == NULL)
-		return (NULL);
-	stack->cur_size = 0;
 	i = 1;
 	while (argv[i] != NULL)
 	{
-		if (fill_stack(stack, argv[i]) != SUCCESSFUL)
+		if (fill_stack(*stack_a, argv[i]) != SUCCESSFUL)
 			return (NULL);
 		i++;
 	}
-	return (stack);
+	return (stack_a);
 }
