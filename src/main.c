@@ -40,11 +40,6 @@ int	count_arguments(char **argv)
 	return (count);
 }
 
-/*
-	for (int i = 0; i < stack_a->size; i++)
-		printf("%d\n", stack_a->arr[i]);
-*/
-
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
