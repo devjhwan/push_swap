@@ -28,6 +28,24 @@ t_stack	*init_stack(int size)
 	return (stack);
 }
 
+t_stack *clone_stack(t_stack *origin_stack)
+{
+	t_stack *cloned_stack;
+	int		i;
+
+	cloned_stack = init_stack(origin_stack->size);
+	if (clone_stack == NULL)
+		return (NULL);
+	i = 0;
+	while (i < origin_stack->size)
+	{
+		clone_stack->arr[i] = origin_stack->arr[i];
+		i++;
+	}
+	clone_stack->cur_size = origin_stack->cur_size;
+	return (clone_stack);
+}
+
 void	free_stack(t_stack *stack)
 {
 	free(stack->arr);
