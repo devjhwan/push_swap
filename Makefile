@@ -14,7 +14,7 @@ NAME=push_swap
 
 SRCDIR=./src
 OBJDIR=objs
-SRCS=main.c ft_putstr.c parse_input.c stack.c
+SRCS=main.c ft_putstr.c parse_input.c stack.c stack_push.c stack_swap.c
 OBJS=$(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
 DEPS=$(OBJS:.o=.d)
 

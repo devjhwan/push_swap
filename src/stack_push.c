@@ -20,7 +20,7 @@ void	push(t_stack *origin, t_stack *destination)
 	if (origin->cur_size >= 1)
 	{
 		o_first = origin->first;
-		d_first = d_first->first - 1;
+		d_first = destination->first - 1;
 		if (d_first < 0)
 			d_first = destination->size - 1;
 		destination->arr[d_first] = origin->arr[o_first];

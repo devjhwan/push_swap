@@ -36,18 +36,18 @@ t_stack *clone_stack(t_stack *origin_stack)
 	int		i;
 
 	cloned_stack = init_stack(origin_stack->size);
-	if (clone_stack == NULL)
+	if (cloned_stack == NULL)
 		return (NULL);
 	i = 0;
 	while (i < origin_stack->size)
 	{
-		clone_stack->arr[i] = origin_stack->arr[i];
+		cloned_stack->arr[i] = origin_stack->arr[i];
 		i++;
 	}
-	clone_stack->first = origin_stack->first;
-	clone_stack->last = origin_stack->last;
-	clone_stack->cur_size = origin_stack->cur_size;
-	return (clone_stack);
+	cloned_stack->first = origin_stack->first;
+	cloned_stack->last = origin_stack->last;
+	cloned_stack->cur_size = origin_stack->cur_size;
+	return (cloned_stack);
 }
 
 void	free_stack(t_stack *stack)
