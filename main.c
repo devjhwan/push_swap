@@ -48,7 +48,7 @@ int	count_arguments(char **argv)
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
-	t_stack *stack_b;
+	t_stack	*stack_b;
 
 	if (argc < 2)
 		return (0);
@@ -61,7 +61,5 @@ int	main(int argc, char **argv)
 		ft_putstr("Error\n");
 		return (0);
 	}
-	for (int i = 0; i < stack_a->size; i++)
-		printf("%d\n", stack_a->arr[i]);
 	stack_b = init_stack(stack_a->size);
 }

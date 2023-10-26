@@ -11,18 +11,15 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdlib.h>
 
 #define MAX 2147483648
 #define INT_MAX 2147483647
 #define INT_MIN -2147483648
-
 #define DUPLICATED 1
 #define CORRECT 0
-
 #define SUCCESSFUL 0
 #define ERROR 1
-
-#define NULL 0
 
 static long long int	ft_atoi(char *arg, int *i)
 {
