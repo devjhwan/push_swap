@@ -60,7 +60,6 @@ static int	check_duplicate(t_stack *stack_a, int num)
 static int	fill_stack(t_stack *stack_a, char *arg)
 {
 	int				i;
-	int				sign;
 	long long int	num;
 
 	i = 0;

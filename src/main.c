@@ -62,4 +62,5 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	stack_b = init_stack(stack_a->size);
+	(void)stack_b;
 }

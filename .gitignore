@@ -1,2 +1,5 @@
 a.out
-*/a.out
+push_swap
+/objs
+*.o
+*.d
