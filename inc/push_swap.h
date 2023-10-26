@@ -16,15 +16,21 @@
 typedef struct s_stack
 {
 	int	*arr;
-	int	size;
 	int	first;
 	int	last;
+	int	size;
 	int	cur_size;
 }	t_stack;
 
+typedef struct s_node
+{
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+}
+
 int		ft_putstr(char *str);
 int		print_stack(t_stack *stack);
-void	*parse_input(t_stack **stack_a, char **argv);
+void	*parse_input(t_stack **stacSk_a, char **argv);
 t_stack	*init_stack(int size);
 void	free_stack(t_stack *stack);
 
