@@ -16,7 +16,7 @@ static void	swap(t_stack *stack)
 {
 	int	tmp;
 	int	first;
-	int second;
+	int	second;
 
 	if (stack->cur_size >= 2)
 	{
@@ -24,7 +24,7 @@ static void	swap(t_stack *stack)
 		second = (stack->first + 1) % stack->size;
 		tmp = stack->arr[first];
 		stack->arr[first] = stack->arr[second];
-		stack->arr[second] = tmp;		
+		stack->arr[second] = tmp;
 	}
 }
 

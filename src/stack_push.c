@@ -15,7 +15,7 @@
 void	push(t_stack *origin, t_stack *destination)
 {
 	int	o_first;
-	int d_first;
+	int	d_first;
 
 	if (origin->cur_size >= 1)
 	{

@@ -48,7 +48,7 @@ int	ft_putnbr(int num)
 int	print_stack(t_stack *stack)
 {
 	int	i;
-	int count;
+	int	count;
 
 	i = stack->first;
 	count = 0;

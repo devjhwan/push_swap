@@ -30,9 +30,9 @@ t_stack	*init_stack(int size)
 	return (stack);
 }
 
-t_stack *clone_stack(t_stack *origin_stack)
+t_stack	*clone_stack(t_stack *origin_stack)
 {
-	t_stack *cloned_stack;
+	t_stack	*cloned_stack;
 	int		i;
 
 	cloned_stack = init_stack(origin_stack->size);

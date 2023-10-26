@@ -18,8 +18,8 @@ typedef struct s_stack
 	int	*arr;
 	int	size;
 	int	first;
-	int last;
-	int cur_size;
+	int	last;
+	int	cur_size;
 }	t_stack;
 
 int		ft_putstr(char *str);
