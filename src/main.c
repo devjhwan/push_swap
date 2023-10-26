@@ -61,6 +61,7 @@ int	main(int argc, char **argv)
 		ft_putstr("Error\n");
 		return (0);
 	}
+	print_stack(stack_a);
 	stack_b = init_stack(stack_a->size);
 	(void)stack_b;
 }

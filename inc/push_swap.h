@@ -23,6 +23,7 @@ typedef struct s_stack
 }	t_stack;
 
 int		ft_putstr(char *str);
+int		print_stack(t_stack *stack);
 void	*parse_input(t_stack **stack_a, char **argv);
 t_stack	*init_stack(int size);
 void	free_stack(t_stack *stack);
