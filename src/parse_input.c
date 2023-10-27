@@ -83,17 +83,17 @@ static int	fill_stack(t_stack *stack_a, char *arg)
 	return (SUCCESSFUL);
 }
 
-void	*parse_input(t_stack **stack_a, char **argv)
+void	*parse_input(t_stack *stack_a, char **argv)
 {
 	int		i;
 
 	i = 1;
 	while (argv[i] != NULL)
 	{
-		if (fill_stack(*stack_a, argv[i]) != SUCCESSFUL)
+		if (fill_stack(stack_a, argv[i]) != SUCCESSFUL)
 			return (NULL);
 		i++;
 	}
-	(*stack_a)->last--;
+	(stack_a)->last--;
 	return (stack_a);
 }

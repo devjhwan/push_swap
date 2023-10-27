@@ -10,9 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "push_swap.h"
+#include "hash.h"
 #include "utils.h"
+#include <stdlib.h>
+
+#define SUCCESS 0
+#define FAIL 1
 
 int	count_arguments(char **argv)
 {
@@ -41,23 +45,37 @@ int	count_arguments(char **argv)
 	return (count);
 }
 
+int	init_variables(t_stack **stack_a, t_stack **stack_b, char **argv)
+{
+	*stack_a = NULL;
+	*stack_b = NULL;
+	*stack_a = init_stack(count_arguments(argv));
+	if (*stack_a == NULL)
+		return (FAIL);
+	if (parse_input(*stack_a, argv) == NULL)
+	{
+		ft_putstr("Error\n");
+		return (FAIL);
+	}
+	*stack_b = init_stack((*stack_a)->size);
+	if (*stack_b == NULL)
+		return (FAIL);
+	return (SUCCESS);
+}
+
 int	main(int argc, char **argv)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	t_stack		*stack_a;
+	t_stack		*stack_b;
 
 	if (argc < 2)
 		return (0);
-	stack_a = init_stack(count_arguments(argv));
-	if (stack_a == NULL)
-		return (0);
-	if (parse_input(&stack_a, argv) == NULL)
+	if (init_variables(&stack_a, &stack_b, argv) == FAIL)
 	{
 		free_stack(stack_a);
-		ft_putstr("Error\n");
-		return (0);
+		free_stack(stack_b);
 	}
-	print_stack(stack_a);
-	stack_b = init_stack(stack_a->size);
-	(void)stack_b;
+	free_stack(stack_a);
+	free_stack(stack_b);
+	return (0);
 }

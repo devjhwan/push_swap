@@ -1,26 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   hash.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 21:01:40 by junghwle          #+#    #+#             */
-/*   Updated: 2023/10/26 21:01:41 by junghwle         ###   ########.fr       */
+/*   Created: 2023/10/27 22:46:24 by junghwle          #+#    #+#             */
+/*   Updated: 2023/10/27 22:46:26 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-
-# include "stack.h"
-
-typedef struct s_node
-{
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-}	t_node;
-
-void	*parse_input(t_stack *stack_a, char **argv);
-
-#endif
+#include "hash.h"

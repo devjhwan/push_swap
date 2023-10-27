@@ -13,8 +13,10 @@
 #ifndef UTILS_H
 # define UTILS_H
 
-int	ft_putchar(int ch);
-int	ft_putstr(char *str);
-int	ft_putnbr(int num);
+# include <stdlib.h>
+
+int		ft_putchar(int ch);
+int		ft_putstr(char *str);
+int		ft_putnbr(int num);
 
 #endif
