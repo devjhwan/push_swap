@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   stack_rotate.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 21:01:40 by junghwle          #+#    #+#             */
-/*   Updated: 2023/10/26 21:01:41 by junghwle         ###   ########.fr       */
+/*   Created: 2023/10/26 23:44:53 by junghwle          #+#    #+#             */
+/*   Updated: 2023/10/26 23:44:55 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "stack.h"
 
-# include "stack.h"
-
-typedef struct s_node
+void	rotate(t_stack *stack)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-}	t_node;
+	if (stack->cur_size >= 1)
+	{
+		stack->last = stack->first;
+		stack->first = (stack->first + 1) % stack->size;
+	}
+}
 
-void	*parse_input(t_stack **stack_a, char **argv);
+void	ra(t_stack *stack)
+{
+	rotate(stack);
+}
 
-#endif
+void	rb(t_stack *stack)
+{
+	rotate(stack);
+}
+
+void	rr(t_stack *stack_a, t_stack *stack_b)
+{
+	rotate(stack_a);
+	rotate(stack_b);
+}

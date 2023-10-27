@@ -13,9 +13,10 @@
 NAME=push_swap
 
 SRCDIR=./src
+STACK_DIR=stack
 OBJDIR=objs
 SRCS=main.c parse_input.c stack.c stack_visualizer.c stack_push.c stack_swap.c \
-	 stack_rotate.c stack_reverse_rotate.c
+	 stack_rotate.c stack_reverse_rotate.c ft_print.c
 OBJS=$(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
 DEPS=$(OBJS:.o=.d)
 
@@ -31,6 +32,10 @@ $(NAME): $(OBJDIR) $(OBJS) Makefile
 	echo "(PUSH_SWAP) COMPILING $@"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c Makefile 
+	$(CC) $(DEPFLAGS) $(CFLAGS) $(INCLUDE) -c -o $@ $<
+	echo "(PUSH_SWAP) COMPILING $@"
+
+$(OBJDIR)/%.o: $(SRCDIR)/$(STACK_DIR)/%.c Makefile 
 	$(CC) $(DEPFLAGS) $(CFLAGS) $(INCLUDE) -c -o $@ $<
 	echo "(PUSH_SWAP) COMPILING $@"
 

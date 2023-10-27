@@ -1,38 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_rotate.c                                     :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 23:44:53 by junghwle          #+#    #+#             */
-/*   Updated: 2023/10/26 23:44:55 by junghwle         ###   ########.fr       */
+/*   Created: 2023/10/27 22:10:26 by junghwle          #+#    #+#             */
+/*   Updated: 2023/10/27 22:10:27 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-void	rotate(t_stack *stack)
-{
-	if (stack->cur_size >= 1)
-	{
-		stack->last = stack->first;
-		stack->first = (stack->first + 1) % stack->size;
-	}
-}
+int	ft_putchar(int ch);
+int	ft_putstr(char *str);
+int	ft_putnbr(int num);
 
-void	ra(t_stack *stack)
-{
-	rotate(stack);
-}
-
-void	rb(t_stack *stack)
-{
-	rotate(stack);
-}
-
-void	rr(t_stack *stack_a, t_stack *stack_b)
-{
-	rotate(stack_a);
-	rotate(stack_b);
-}
+#endif

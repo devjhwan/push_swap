@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <stdlib.h>
 #include "push_swap.h"
+#include "utils.h"
 
 int	count_arguments(char **argv)
 {
@@ -56,6 +57,7 @@ int	main(int argc, char **argv)
 		ft_putstr("Error\n");
 		return (0);
 	}
+	print_stack(stack_a);
 	stack_b = init_stack(stack_a->size);
 	(void)stack_b;
 }
