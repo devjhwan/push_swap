@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_reverse_rotate.c                             :+:      :+:    :+:   */
+/*   clone_stack.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 23:54:59 by junghwle          #+#    #+#             */
-/*   Updated: 2023/10/26 23:55:01 by junghwle         ###   ########.fr       */
+/*   Created: 2023/10/28 16:06:15 by junghwle          #+#    #+#             */
+/*   Updated: 2023/10/28 16:06:17 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
+#include <stdlib.h>
 
-void	reverse_rotate(t_stack *stack)
+t_stack	*clone_stack(t_stack *origin_stack)
 {
-	if (stack->cur_size >= 1)
+	t_stack	*stack_clone;
+	int		i;
+
+	stack_clone = init_stack(origin_stack->size);
+	if (stack_clone == NULL)
+		return (NULL);
+	i = 0;
+	while (i < origin_stack->size)
 	{
-		stack->first = stack->last;
-		stack->last = stack->last - 1;
-		if (stack->last < 0)
-			stack->last = stack->size - 1;
+		stack_clone->arr[i] = origin_stack->arr[i];
+		i++;
 	}
-}
-
-void	rra(t_stack *stack)
-{
-	reverse_rotate(stack);
-}
-
-void	rrb(t_stack *stack)
-{
-	reverse_rotate(stack);
-}
-
-void	rrr(t_stack *stack_a, t_stack *stack_b)
-{
-	reverse_rotate(stack_a);
-	reverse_rotate(stack_b);
+	stack_clone->first = origin_stack->first;
+	stack_clone->last = origin_stack->last;
+	stack_clone->cur_size = origin_stack->cur_size;
+	return (stack_clone);
 }

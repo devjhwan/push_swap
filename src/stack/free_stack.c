@@ -1,38 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_rotate.c                                     :+:      :+:    :+:   */
+/*   free_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 23:44:53 by junghwle          #+#    #+#             */
-/*   Updated: 2023/10/26 23:44:55 by junghwle         ###   ########.fr       */
+/*   Created: 2023/10/26 22:18:45 by junghwle          #+#    #+#             */
+/*   Updated: 2023/10/26 22:18:46 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
+#include <stdlib.h>
 
-void	rotate(t_stack *stack)
+void	free_stack(t_stack **stack)
 {
-	if (stack->cur_size >= 1)
-	{
-		stack->last = stack->first;
-		stack->first = (stack->first + 1) % stack->size;
-	}
-}
-
-void	ra(t_stack *stack)
-{
-	rotate(stack);
-}
-
-void	rb(t_stack *stack)
-{
-	rotate(stack);
-}
-
-void	rr(t_stack *stack_a, t_stack *stack_b)
-{
-	rotate(stack_a);
-	rotate(stack_b);
+	free((*stack)->arr);
+	free(*stack);
+	*stack = NULL;
 }

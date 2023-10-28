@@ -71,10 +71,10 @@ int	main(int argc, char **argv)
 		return (0);
 	if (init_variables(&stack_a, &stack_b, argv) == FAIL)
 	{
-		free_stack(stack_a);
-		free_stack(stack_b);
+		free_stack(&stack_a);
+		free_stack(&stack_b);
 	}
-	free_stack(stack_a);
-	free_stack(stack_b);
+	free_stack(&stack_a);
+	free_stack(&stack_b);
 	return (0);
 }

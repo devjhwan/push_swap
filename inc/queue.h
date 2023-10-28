@@ -31,9 +31,8 @@ typedef struct s_queue
 }	t_queue;
 
 t_queue			*init_queue(void);
-t_queue_node	*queue_new_node(void *content);
-int				queue_push(t_queue *queue, void *content);
-void			*queue_pop(t_queue *queue);
+int				push_queue(t_queue *queue, void *content);
+void			*pop_queue(t_queue *queue);
 void			free_queue(t_queue **queue, void (*del_func)(void *));
 
 #endif

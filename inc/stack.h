@@ -24,18 +24,11 @@ typedef struct s_stack
 
 t_stack	*init_stack(int size);
 int		print_stack(t_stack *stack);
-void	free_stack(t_stack *stack);
+void	free_stack(t_stack **stack);
 
-void	pa(t_stack *stack_a, t_stack *stack_b);
-void	pb(t_stack *stack_a, t_stack *stack_b);
-void	sa(t_stack *stack);
-void	sb(t_stack *stack);
-void	ss(t_stack *stack_a, t_stack *stack_b);
-void	ra(t_stack *stack);
-void	rb(t_stack *stack);
-void	rr(t_stack *stack_a, t_stack *stack_b);
-void	rra(t_stack *stack);
-void	rrb(t_stack *stack);
-void	rrr(t_stack *stack_a, t_stack *stack_b);
+void	push_stack(t_stack *origin, t_stack *dest);
+void	swap_stack(t_stack *stack);
+void	rotate_stack(t_stack *stack);
+void	reverse_rotate_stack(t_stack *stack);
 
 #endif

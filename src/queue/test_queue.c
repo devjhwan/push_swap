@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue_test.c                                       :+:      :+:    :+:   */
+/*   test_queue.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -25,32 +25,32 @@ int main(void)
 
 	queue = init_queue();
 	printf("queue_pointer: %p\n", queue);
-	if (queue_push(queue, "hola") != 0)
+	if (push_queue(queue, "hola") != 0)
 	{
 		free(queue);
 		return (1);
 	}
 	printf("queue size: %d\n", queue->size);
-	test = queue_pop(queue);
+	test = pop_queue(queue);
 	printf("%s\n", test);
 	printf("queue size: %d\n", queue->size);
-	test = queue_pop(queue);
+	test = pop_queue(queue);
 	if (test != NULL)
 	{
 		printf("Empty queue pop error\n");
 		return (0);
 	}
-	if (queue_push(queue, "hola") != 0)
+	if (push_queue(queue, "hola") != 0)
 	{
 		free(queue);
 		return (1);
 	}
-	if (queue_push(queue, "hola1") != 0)
+	if (push_queue(queue, "hola1") != 0)
 	{
 		free(queue);
 		return (1);
 	}
-	if (queue_push(queue, "hola2") != 0)
+	if (push_queue(queue, "hola2") != 0)
 	{
 		free(queue);
 		return (1);

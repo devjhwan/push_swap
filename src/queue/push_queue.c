@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue_push.c                                       :+:      :+:    :+:   */
+/*   push_queue.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,12 +12,24 @@
 
 #include "queue.h"
 
-int	queue_push(t_queue *queue, void *content)
+static t_queue_node	*new_node_queue(void *content)
+{
+	t_queue_node	*node;
+
+	node = (t_queue_node *)malloc(sizeof(t_queue_node));
+	if (node == NULL)
+		return (NULL);
+	node->content = content;
+	node->next = NULL;
+	return (node);
+}
+
+int	push_queue(t_queue *queue, void *content)
 {
 	t_queue_node	*new_node;
 	t_queue_node	*last_node;
 
-	new_node = queue_new_node(content);
+	new_node = new_node_queue(content);
 	if (new_node == NULL)
 		return (FAIL);
 	if (queue->size == 0)

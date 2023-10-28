@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_queue.c                                       :+:      :+:    :+:   */
+/*   rotate_stack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 15:46:01 by junghwle          #+#    #+#             */
-/*   Updated: 2023/10/28 15:46:03 by junghwle         ###   ########.fr       */
+/*   Created: 2023/10/26 23:44:53 by junghwle          #+#    #+#             */
+/*   Updated: 2023/10/26 23:44:55 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "queue.h"
+#include "stack.h"
 
-void	free_queue(t_queue **queue, void (*del_func)(void *))
+void	rotate_stack(t_stack *stack)
 {
-	void	*del_content;
-
-	while ((*queue)->size > 0)
+	if (stack->cur_size >= 1)
 	{
-		del_content = pop_queue(*queue);
-		del_func(del_content);
+		stack->last = stack->first;
+		stack->first = (stack->first + 1) % stack->size;
 	}
-	free(*queue);
-	*queue = NULL;
 }

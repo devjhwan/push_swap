@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue_new_node.c                                   :+:      :+:    :+:   */
+/*   pop_queue.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 15:16:47 by junghwle          #+#    #+#             */
-/*   Updated: 2023/10/28 15:16:47 by junghwle         ###   ########.fr       */
+/*   Created: 2023/10/28 15:21:43 by junghwle          #+#    #+#             */
+/*   Updated: 2023/10/28 15:21:44 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "queue.h"
 
-t_queue_node	*queue_new_node(void *content)
+void	*pop_queue(t_queue *queue)
 {
-	t_queue_node	*node;
+	t_queue_node	*delnode;
+	void			*content;
 
-	node = (t_queue_node *)malloc(sizeof(t_queue_node));
-	if (node == NULL)
+	if (queue->size == 0)
 		return (NULL);
-	node->content = content;
-	node->next = NULL;
-	return (node);
+	delnode = queue->list;
+	queue->list = queue->list->next;
+	content = delnode->content;
+	delnode->next = NULL;
+	queue->size--;
+	free(delnode);
+	return (content);
 }

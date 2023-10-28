@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue_pop.c                                        :+:      :+:    :+:   */
+/*   swap_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 15:21:43 by junghwle          #+#    #+#             */
-/*   Updated: 2023/10/28 15:21:44 by junghwle         ###   ########.fr       */
+/*   Created: 2023/10/26 22:44:27 by junghwle          #+#    #+#             */
+/*   Updated: 2023/10/26 22:44:28 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "queue.h"
+#include "stack.h"
 
-void	*queue_pop(t_queue *queue)
+void	swap_stack(t_stack *stack)
 {
-	t_queue_node	*delnode;
-	void			*content;
+	int	tmp;
+	int	first;
+	int	second;
 
-	if (queue->size == 0)
-		return (NULL);
-	delnode = queue->list;
-	queue->list = queue->list->next;
-	content = delnode->content;
-	delnode->next = NULL;
-	queue->size--;
-	free(delnode);
-	return (content);
+	if (stack->cur_size >= 2)
+	{
+		first = stack->first;
+		second = (stack->first + 1) % stack->size;
+		tmp = stack->arr[first];
+		stack->arr[first] = stack->arr[second];
+		stack->arr[second] = tmp;
+	}
 }

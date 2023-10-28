@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_push.c                                       :+:      :+:    :+:   */
+/*   push_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "stack.h"
 
-void	push(t_stack *origin, t_stack *dest)
+void	push_stack(t_stack *origin, t_stack *dest)
 {
 	if (origin->cur_size >= 1)
 	{
@@ -24,14 +24,4 @@ void	push(t_stack *origin, t_stack *dest)
 		dest->cur_size++;
 		origin->cur_size--;
 	}
-}
-
-void	pa(t_stack *stack_a, t_stack *stack_b)
-{
-	push(stack_b, stack_a);
-}
-
-void	pb(t_stack *stack_a, t_stack *stack_b)
-{
-	push(stack_a, stack_b);
 }
