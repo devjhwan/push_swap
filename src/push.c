@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 21:01:40 by junghwle          #+#    #+#             */
-/*   Updated: 2023/10/26 21:01:41 by junghwle         ###   ########.fr       */
+/*   Created: 2023/10/28 16:34:47 by junghwle          #+#    #+#             */
+/*   Updated: 2023/10/28 16:34:48 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include "stack.h"
-
-typedef struct s_node
+void	pa(t_node *node)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-}	t_node;
+	push(node->stack_b, node->stack_a);
+}
 
-t_node	*init_node(char **argv);
-void	*parse_input(t_stack *stack_a, char **argv);
-void	free_node(t_node **node);
-
-void	pa(t_node *node);
-void	pb(t_node *node);
-void	sa(t_node *node);
-void	sb(t_node *node);
-void	ss(t_node *node);
-
-#endif
+void	pb(t_node *node)
+{
+	push(node->stack_a, node->stack_b);
+}

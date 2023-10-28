@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   breadth_first_search.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 21:01:40 by junghwle          #+#    #+#             */
-/*   Updated: 2023/10/26 21:01:41 by junghwle         ###   ########.fr       */
+/*   Created: 2023/10/28 16:32:00 by junghwle          #+#    #+#             */
+/*   Updated: 2023/10/28 16:32:02 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
+#include "queue.h"
 
-# include "stack.h"
-
-typedef struct s_node
+char	*breadth_first_search(t_node *init_node)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-}	t_node;
-
-t_node	*init_node(char **argv);
-void	*parse_input(t_stack *stack_a, char **argv);
-void	free_node(t_node **node);
-
-void	pa(t_node *node);
-void	pb(t_node *node);
-void	sa(t_node *node);
-void	sb(t_node *node);
-void	ss(t_node *node);
-
-#endif
+	(void)init_node;
+	return (NULL);
+}

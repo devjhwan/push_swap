@@ -14,7 +14,7 @@
 
 void	rotate_stack(t_stack *stack)
 {
-	if (stack->cur_size >= 1)
+	if (stack->cur_size >= 2)
 	{
 		stack->last = stack->first;
 		stack->first = (stack->first + 1) % stack->size;
