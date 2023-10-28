@@ -13,10 +13,10 @@
 #include "push_swap.h"
 #include <stdlib.h>
 
-void	free_node(t_node **node, void (*del_func)(t_stack **))
+void	free_node(t_node **node)
 {
-	del_func(&((*node)->stack_a));
-	del_func(&((*node)->stack_b));
+	free_stack(&((*node)->stack_a));
+	free_stack(&((*node)->stack_b));
 	free(*node);
 	*node = NULL;
 }

@@ -23,6 +23,6 @@ int	main(int argc, char **argv)
 	if (initial_node == NULL)
 		return (0);
 	print_stack(initial_node->stack_a);
-	free_node(&initial_node, free_stack);
+	free_node(&initial_node);
 	return (0);
 }
