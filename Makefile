@@ -58,11 +58,17 @@ $(OBJDIR)/%.o: $(SRCDIR)/$(UTILS_DIR)/%.c Makefile
 $(OBJDIR): Makefile
 	mkdir -p $@
 
+test_queue:
+	$(CC) $(CFLAGS) $(INCLUDE) -o $@ $(SRCDIR)/$(QUEUE_DIR)/*.c
+	echo "(TESTING_QUEUE) COMPILING $@"
+	valgrind ./test_queue
+	rm -f test_queue
+
 clean:
 	rm -rf $(OBJDIR)
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 
