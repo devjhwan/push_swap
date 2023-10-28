@@ -17,8 +17,14 @@ STACK_DIR=stack
 QUEUE_DIR=queue
 UTILS_DIR=utils
 OBJDIR=objs
-SRCS=main.c parse_input.c stack.c stack_visualizer.c stack_push.c stack_swap.c \
-	 stack_rotate.c stack_reverse_rotate.c ft_print.c queue.c
+
+MAIN_SRC=main.c parse_input.c
+STACK_SRC=stack.c stack_visualizer.c stack_push.c stack_swap.c stack_rotate.c \
+		  stack_reverse_rotate.c
+QUEUE_SRC=init_queue.c queue_new_node.c queue_push.c queue_pop.c
+UTILS_SRC=ft_print.c
+SRCS=$(MAIN_SRC) $(STACK_SRC) $(QUEUE_SRC) $(UTILS_SRC)
+
 OBJS=$(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
 DEPS=$(OBJS:.o=.d)
 
