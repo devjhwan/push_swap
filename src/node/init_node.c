@@ -52,12 +52,14 @@ t_node	*init_node(char **argv)
 	size = count_arguments(argv);
 	node->stack_a = init_stack(size);
 	node->stack_b = init_stack(size);
+	node->prev_node = NULL;
+	node->last_action = NONE;
 	if (node->stack_a == NULL || node->stack_b == NULL)
-		return (free_node(&node), NULL);
+		return (free_node(node), NULL);
 	if (parse_input(node->stack_a, argv) == NULL)
 	{
 		ft_putstr("Error\n");
-		return (free_node(&node), NULL);
+		return (free_node(node), NULL);
 	}
 	return (node);
 }

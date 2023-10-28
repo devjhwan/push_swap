@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pop_queue.c                                        :+:      :+:    :+:   */
+/*   free_node.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 15:21:43 by junghwle          #+#    #+#             */
-/*   Updated: 2023/10/28 15:21:44 by junghwle         ###   ########.fr       */
+/*   Created: 2023/10/28 16:22:04 by junghwle          #+#    #+#             */
+/*   Updated: 2023/10/28 16:22:07 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "queue.h"
+#include "push_swap.h"
+#include <stdlib.h>
 
-void	*pop_queue(t_queue *queue)
+void	free_node(t_node *node)
 {
-	t_queue_node	*delnode;
-	void			*content;
-
-	if (queue->size == 0)
-		return (NULL);
-	delnode = queue->list;
-	queue->list = queue->list->next;
-	content = delnode->content;
-	delnode->content = NULL;
-	delnode->next = NULL;
-	queue->size--;
-	free(delnode);
-	return (content);
+	free_stack(node->stack_a);
+	free_stack(node->stack_b);
+	node->stack_a = NULL;
+	node->stack_b = NULL;
+	free(node);
+	node = NULL;
 }

@@ -15,20 +15,46 @@
 
 # include "stack.h"
 
+# define NONE 0
+# define PA 1
+# define PB 2
+# define SA 3
+# define SB 4
+# define SS 5
+# define RA 6
+# define RB 7
+# define RR 8
+# define RRA 9
+# define RRB 10
+# define RRR 11
+
 typedef struct s_node
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	t_stack			*stack_a;
+	t_stack			*stack_b;
+	char			last_action;
+	struct s_node	*prev_node;
 }	t_node;
 
-t_node	*init_node(char **argv);
 void	*parse_input(t_stack *stack_a, char **argv);
-void	free_node(t_node **node);
+t_node	*init_node(char **argv);
+void	free_node(t_node *node);
+int 	isnodesorted(t_node *node);
+t_node	*clone_node(t_node *node, void (*act_function)(t_node *), char action);
+t_node	**get_adjacent_nodes(t_node *node);
+
+char	*breadth_first_search(t_node *init_node);
 
 void	pa(t_node *node);
 void	pb(t_node *node);
 void	sa(t_node *node);
 void	sb(t_node *node);
 void	ss(t_node *node);
+void	ra(t_node *node);
+void	rb(t_node *node);
+void	rr(t_node *node);
+void	rra(t_node *node);
+void	rrb(t_node *node);
+void	rrr(t_node *node);
 
 #endif

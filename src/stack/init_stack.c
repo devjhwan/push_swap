@@ -22,7 +22,7 @@ t_stack	*init_stack(int size)
 		return (NULL);
 	stack->arr = (int *)malloc(sizeof(int) * size);
 	if (stack->arr == NULL)
-		return (free_stack(&stack), NULL);
+		return (free_stack(stack), NULL);
 	stack->size = size;
 	stack->first = 0;
 	stack->last = 0;

@@ -13,9 +13,8 @@
 #include "stack.h"
 #include <stdlib.h>
 
-void	free_stack(t_stack **stack)
+void	free_stack(t_stack *stack)
 {
-	free((*stack)->arr);
-	free(*stack);
-	*stack = NULL;
+	free(stack->arr);
+	free(stack);
 }

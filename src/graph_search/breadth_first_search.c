@@ -13,8 +13,22 @@
 #include "push_swap.h"
 #include "queue.h"
 
-char	*breadth_first_search(t_node *init_node)
+char	*breadth_first_search(t_node *start_node)
 {
-	(void)init_node;
+	t_queue *queue;
+	t_node	*cur_node;
+
+	queue = init_queue();
+	if (queue == NULL)
+		return (NULL);
+	if (push_queue(queue, start_node) == 1)
+		return (NULL); //free_queue(queue, free_node), 
+	while (queue->size > 0)
+	{
+		cur_node = (t_node *)pop_queue(queue);
+		//push_adjacent_nodes(queue, cur_node);
+	}
+	//free_queue(queue, free_node);
+		(void)cur_node;
 	return (NULL);
 }

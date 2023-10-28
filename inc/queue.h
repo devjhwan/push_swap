@@ -30,6 +30,6 @@ typedef struct s_queue
 t_queue			*init_queue(void);
 int				push_queue(t_queue *queue, void *content);
 void			*pop_queue(t_queue *queue);
-void			free_queue(t_queue **queue, void (*del_func)(void *));
+void			free_queue(t_queue *queue, void (*del_func)(void *));
 
 #endif

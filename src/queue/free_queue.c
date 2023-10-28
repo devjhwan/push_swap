@@ -12,15 +12,14 @@
 
 #include "queue.h"
 
-void	free_queue(t_queue **queue, void (*del_func)(void *))
+void	free_queue(t_queue *queue, void (*del_func)(void *))
 {
 	void	*del_content;
 
-	while ((*queue)->size > 0)
+	while (queue->size > 0)
 	{
-		del_content = pop_queue(*queue);
+		del_content = pop_queue(queue);
 		del_func(del_content);
 	}
-	free(*queue);
-	*queue = NULL;
+	free(queue);
 }

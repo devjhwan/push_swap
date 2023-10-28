@@ -24,7 +24,8 @@ typedef struct s_stack
 
 t_stack	*init_stack(int size);
 int		print_stack(t_stack *stack);
-void	free_stack(t_stack **stack);
+void	free_stack(t_stack *stack);
+t_stack	*clone_stack(t_stack *origin_stack);
 
 void	push_stack(t_stack *origin, t_stack *dest);
 void	swap_stack(t_stack *stack);

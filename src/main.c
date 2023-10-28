@@ -11,18 +11,36 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "utils.h"
 #include <stdlib.h>
+
+static void	sort_stack(t_node *node)
+{
+	char	*actions;
+
+	actions = NULL;
+	if (node->stack_a->size <= 5)
+		actions = breadth_first_search(node);
+	if (actions != NULL)
+	{
+		ft_putstr(actions);
+		free(actions);
+	}
+}
+
+#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
-	t_node		*initial_node;
+	t_node		*node;
 
 	if (argc < 2)
 		return (0);
-	initial_node = init_node(argv);
-	if (initial_node == NULL)
+	node = init_node(argv);
+	if (node == NULL)
 		return (0);
-	print_stack(initial_node->stack_a);
-	free_node(&initial_node);
+	 if (isnodesorted(node) == 0)
+	 	sort_stack(node);
+	free_node(node);
 	return (0);
 }
