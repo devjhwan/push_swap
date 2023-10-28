@@ -12,7 +12,7 @@
 
 #include "queue.h"
 
-t_queue	*	init_queue(void)
+t_queue	*init_queue(void)
 {
 	t_queue	*queue;
 

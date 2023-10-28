@@ -14,7 +14,7 @@
 
 t_queue_node	*queue_new_node(void *content)
 {
-	t_queue_node *node;
+	t_queue_node	*node;
 
 	node = (t_queue_node *)malloc(sizeof(t_queue_node));
 	if (node == NULL)

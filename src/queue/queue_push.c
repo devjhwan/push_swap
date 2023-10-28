@@ -14,8 +14,8 @@
 
 int	queue_push(t_queue *queue, void *content)
 {
-	t_queue_node *new_node;
-	t_queue_node *last_node;
+	t_queue_node	*new_node;
+	t_queue_node	*last_node;
 
 	new_node = queue_new_node(content);
 	if (new_node == NULL)

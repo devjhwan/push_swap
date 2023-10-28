@@ -15,8 +15,8 @@
 
 # include <stdlib.h>
 
-#define SUCCESS 0
-#define FAIL 1
+# define SUCCESS 0
+# define FAIL 1
 
 typedef struct s_queue_node
 {
@@ -30,9 +30,9 @@ typedef struct s_queue
 	int				size;
 }	t_queue;
 
-t_queue	*		init_queue(void);
+t_queue			*init_queue(void);
 t_queue_node	*queue_new_node(void *content);
 int				queue_push(t_queue *queue, void *content);
-void			*queue_pop(t_queue *queue)
+void			*queue_pop(t_queue *queue);
 
 #endif
