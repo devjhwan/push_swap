@@ -20,14 +20,14 @@ static int	find_push(t_node **adjacent_nodes, t_node *node, int *count)
 {
 	t_node	*node_clone;
 
-	if (node->stack_b->cur_size >= 1)
+	if (node->stack_b->cur_size >= 1 && node->last_action != PB)
 	{
 		node_clone = clone_node(node, pa, PA);
 		if (node_clone == NULL)
 			return (ERROR);
 		adjacent_nodes[(*count)++] = node_clone;
 	}
-	if (node->stack_a->cur_size >= 1)
+	if (node->stack_a->cur_size >= 1 && node->last_action != PA)
 	{
 		node_clone = clone_node(node, pb, PB);
 		if (node_clone == NULL)
@@ -41,21 +41,22 @@ static int	find_swap(t_node **adjacent_nodes, t_node *node, int *count)
 {
 	t_node	*node_clone;
 
-	if (node->stack_a->cur_size >= 2)
+	if (node->stack_a->cur_size >= 2 && node->last_action != SA)
 	{
 		node_clone = clone_node(node, sa, SA);
 		if (node_clone == NULL)
 			return (ERROR);
 		adjacent_nodes[(*count)++] = node_clone;
 	}
-	if (node->stack_b->cur_size >= 2)
+	if (node->stack_b->cur_size >= 2 && node->last_action != SB)
 	{
 		node_clone = clone_node(node, sb, SB);
 		if (node_clone == NULL)
 			return (ERROR);
 		adjacent_nodes[(*count)++] = node_clone;
 	}
-	if (node->stack_a->cur_size >= 2 && node->stack_b->cur_size >= 2)
+	if (node->stack_a->cur_size >= 2 && node->stack_b->cur_size >= 2 && \
+		node->last_action != SS)
 	{
 		node_clone = clone_node(node, ss, SS);
 		if (node_clone == NULL)
@@ -69,21 +70,22 @@ static int	find_rotate(t_node **adjacent_nodes, t_node *node, int *count)
 {
 	t_node	*node_clone;
 
-	if (node->stack_a->cur_size >= 2)
+	if (node->stack_a->cur_size >= 2 && node->last_action != RRA)
 	{
 		node_clone = clone_node(node, ra, RA);
 		if (node_clone == NULL)
 			return (ERROR);
 		adjacent_nodes[(*count)++] = node_clone;
 	}
-	if (node->stack_b->cur_size >= 2)
+	if (node->stack_b->cur_size >= 2 && node->last_action != RRB)
 	{
 		node_clone = clone_node(node, rb, RB);
 		if (node_clone == NULL)
 			return (ERROR);
 		adjacent_nodes[(*count)++] = node_clone;
 	}
-	if (node->stack_a->cur_size >= 2 && node->stack_b->cur_size >= 2)
+	if (node->stack_a->cur_size >= 2 && node->stack_b->cur_size >= 2 && \
+		node->last_action != RRR)
 	{
 		node_clone = clone_node(node, rr, RR);
 		if (node_clone == NULL)
@@ -98,21 +100,22 @@ static int	find_reverse_rotate(t_node **adjacent_nodes, \
 {
 	t_node	*node_clone;
 
-	if (node->stack_a->cur_size >= 2)
+	if (node->stack_a->cur_size >= 2 && node->last_action != RA)
 	{
 		node_clone = clone_node(node, rra, RRA);
 		if (node_clone == NULL)
 			return (ERROR);
 		adjacent_nodes[(*count)++] = node_clone;
 	}
-	if (node->stack_b->cur_size >= 2)
+	if (node->stack_b->cur_size >= 2 && node->last_action != RB)
 	{
 		node_clone = clone_node(node, rrb, RRB);
 		if (node_clone == NULL)
 			return (ERROR);
 		adjacent_nodes[(*count)++] = node_clone;
 	}
-	if (node->stack_a->cur_size >= 2 && node->stack_b->cur_size >= 2)
+	if (node->stack_a->cur_size >= 2 && node->stack_b->cur_size >= 2 && \
+		node->last_action != RR)
 	{
 		node_clone = clone_node(node, rrr, RRR);
 		if (node_clone == NULL)
