@@ -21,6 +21,8 @@ typedef struct s_node
 	t_stack	*stack_b;
 }	t_node;
 
+t_node	*init_node(char **argv);
 void	*parse_input(t_stack *stack_a, char **argv);
+void	free_node(t_node **node, void (*del_func)(t_stack **));
 
 #endif

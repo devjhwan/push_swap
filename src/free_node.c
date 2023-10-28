@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_node.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 20:41:55 by junghwle          #+#    #+#             */
-/*   Updated: 2023/10/26 20:41:58 by junghwle         ###   ########.fr       */
+/*   Created: 2023/10/28 16:22:04 by junghwle          #+#    #+#             */
+/*   Updated: 2023/10/28 16:22:07 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
 
-int	main(int argc, char **argv)
+void	free_node(t_node **node, void (*del_func)(t_stack **))
 {
-	t_node		*initial_node;
-
-	if (argc < 2)
-		return (0);
-	initial_node = init_node(argv);
-	if (initial_node == NULL)
-		return (0);
-	print_stack(initial_node->stack_a);
-	free_node(&initial_node, free_stack);
-	return (0);
+	del_func(&((*node)->stack_a));
+	del_func(&((*node)->stack_b));
+	free(*node);
+	*node = NULL;
 }
