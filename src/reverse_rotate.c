@@ -14,16 +14,16 @@
 
 void	rra(t_node *node)
 {
-	reverse_rotate(node->stack_a);
+	reverse_rotate_stack(node->stack_a);
 }
 
 void	rrb(t_node *node)
 {
-	reverse_rotate(node->stack_b);
+	reverse_rotate_stack(node->stack_b);
 }
 
 void	rrr(t_node *node)
 {
-	reverse_rotate(node->stack_a);
-	reverse_rotate(node->stack_b);
+	reverse_rotate_stack(node->stack_a);
+	reverse_rotate_stack(node->stack_b);
 }

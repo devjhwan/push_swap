@@ -15,9 +15,6 @@
 
 # include <stdlib.h>
 
-# define SUCCESS 0
-# define FAIL 1
-
 typedef struct s_queue_node
 {
 	void				*content;

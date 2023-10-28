@@ -14,16 +14,16 @@
 
 void	sa(t_node *node)
 {
-	swap(node->stack_a);
+	swap_stack(node->stack_a);
 }
 
 void	sb(t_node *node)
 {
-	swap(node->stack_b);
+	swap_stack(node->stack_b);
 }
 
 void	ss(t_node *node)
 {
-	swap(node->stack_a);
-	swap(node->stack_b);
+	swap_stack(node->stack_a);
+	swap_stack(node->stack_b);
 }

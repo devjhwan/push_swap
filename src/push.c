@@ -14,10 +14,10 @@
 
 void	pa(t_node *node)
 {
-	push(node->stack_b, node->stack_a);
+	push_stack(node->stack_b, node->stack_a);
 }
 
 void	pb(t_node *node)
 {
-	push(node->stack_a, node->stack_b);
+	push_stack(node->stack_a, node->stack_b);
 }

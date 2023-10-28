@@ -31,7 +31,7 @@ int	push_queue(t_queue *queue, void *content)
 
 	new_node = new_node_queue(content);
 	if (new_node == NULL)
-		return (FAIL);
+		return (1);
 	if (queue->size == 0)
 	{
 		queue->list = new_node;
@@ -45,5 +45,5 @@ int	push_queue(t_queue *queue, void *content)
 		last_node->next = new_node;
 		queue->size++;
 	}
-	return (SUCCESS);
+	return (0);
 }
