@@ -28,8 +28,6 @@ static void	sort_stack(t_node *node)
 	}
 }
 
-#include <stdio.h>
-
 int	main(int argc, char **argv)
 {
 	t_node		*node;
@@ -39,8 +37,8 @@ int	main(int argc, char **argv)
 	node = init_node(argv);
 	if (node == NULL)
 		return (0);
-	 if (isnodesorted(node) == 0)
-	 	sort_stack(node);
+	if (isnodesorted(node) == 0)
+		sort_stack(node);
 	free_node(node);
 	return (0);
 }

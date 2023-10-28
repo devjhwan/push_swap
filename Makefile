@@ -16,18 +16,20 @@ SRCDIR=./src
 STACK_DIR=stack
 QUEUE_DIR=queue
 UTILS_DIR=utils
+NODE_DIR=node
 GRAPH_SEARCH_DIR=graph_search
 OBJDIR=objs
 
-MAIN_SRC=main.c parse_input.c init_node.c free_node.c \
-		 push.c swap.c rotate.c reverse_rotate.c isnodesorted.c \
-		 clone_node.c get_adjacent_nodes.c
+MAIN_SRC=main.c parse_input.c push.c swap.c rotate.c reverse_rotate.c 
 STACK_SRC=init_stack.c clone_stack.c free_stack.c stack_visualizer.c \
 		  push_stack.c swap_stack.c rotate_stack.c reverse_rotate_stack.c 
 QUEUE_SRC=init_queue.c free_queue.c push_queue.c pop_queue.c
 UTILS_SRC=ft_print.c
+NODE_SRC=init_node.c free_node.c isnodesorted.c clone_node.c \
+		 get_adjacent_nodes.c
 GRAPH_SEARCH_SRC=breadth_first_search.c
-SRCS=$(MAIN_SRC) $(STACK_SRC) $(QUEUE_SRC) $(UTILS_SRC) $(GRAPH_SEARCH_SRC)
+SRCS=$(MAIN_SRC) $(STACK_SRC) $(QUEUE_SRC) $(UTILS_SRC) \
+	 $(NODE_SRC) $(GRAPH_SEARCH_SRC)
 
 OBJS=$(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
 DEPS=$(OBJS:.o=.d)
@@ -56,6 +58,10 @@ $(OBJDIR)/%.o: $(SRCDIR)/$(QUEUE_DIR)/%.c Makefile
 	echo "(PUSH_SWAP) COMPILING $@"
 
 $(OBJDIR)/%.o: $(SRCDIR)/$(UTILS_DIR)/%.c Makefile 
+	$(CC) $(DEPFLAGS) $(CFLAGS) $(INCLUDE) -c -o $@ $<
+	echo "(PUSH_SWAP) COMPILING $@"
+
+$(OBJDIR)/%.o: $(SRCDIR)/$(NODE_DIR)/%.c Makefile 
 	$(CC) $(DEPFLAGS) $(CFLAGS) $(INCLUDE) -c -o $@ $<
 	echo "(PUSH_SWAP) COMPILING $@"
 

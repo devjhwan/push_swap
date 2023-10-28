@@ -12,11 +12,11 @@
 
 #include "push_swap.h"
 
-int isnodesorted(t_node *node)
+int	isnodesorted(t_node *node)
 {
 	t_stack	*stack;
-	int	i;
-	int	n;
+	int		i;
+	int		n;
 
 	stack = node->stack_a;
 	if (stack->cur_size != stack->size)

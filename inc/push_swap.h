@@ -38,8 +38,8 @@ typedef struct s_node
 
 void	*parse_input(t_stack *stack_a, char **argv);
 t_node	*init_node(char **argv);
-void	free_node(t_node *node);
-int 	isnodesorted(t_node *node);
+void	free_node(void *node);
+int		isnodesorted(t_node *node);
 t_node	*clone_node(t_node *node, void (*act_function)(t_node *), char action);
 t_node	**get_adjacent_nodes(t_node *node);
 

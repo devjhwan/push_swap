@@ -18,7 +18,7 @@
 
 static int	find_push(t_node **adjacent_nodes, t_node *node, int *count)
 {
-	t_node *node_clone;
+	t_node	*node_clone;
 
 	if (node->stack_b->cur_size >= 1)
 	{
@@ -39,7 +39,7 @@ static int	find_push(t_node **adjacent_nodes, t_node *node, int *count)
 
 static int	find_swap(t_node **adjacent_nodes, t_node *node, int *count)
 {
-	t_node *node_clone;
+	t_node	*node_clone;
 
 	if (node->stack_a->cur_size >= 2)
 	{
@@ -67,7 +67,7 @@ static int	find_swap(t_node **adjacent_nodes, t_node *node, int *count)
 
 static int	find_rotate(t_node **adjacent_nodes, t_node *node, int *count)
 {
-	t_node *node_clone;
+	t_node	*node_clone;
 
 	if (node->stack_a->cur_size >= 2)
 	{
@@ -96,7 +96,7 @@ static int	find_rotate(t_node **adjacent_nodes, t_node *node, int *count)
 static int	find_reverse_rotate(t_node **adjacent_nodes, \
 								t_node *node, int *count)
 {
-	t_node *node_clone;
+	t_node	*node_clone;
 
 	if (node->stack_a->cur_size >= 2)
 	{

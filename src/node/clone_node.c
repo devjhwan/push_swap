@@ -15,7 +15,7 @@
 
 t_node	*clone_node(t_node *node, void (*act_function)(t_node *), char action)
 {
-	t_node *node_clone;
+	t_node	*node_clone;
 
 	node_clone = (t_node *)malloc(sizeof(t_node));
 	if (node_clone == NULL)
