@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "hash.h"
 #include "utils.h"
 #include <stdlib.h>
 
