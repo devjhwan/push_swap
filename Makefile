@@ -19,9 +19,9 @@ UTILS_DIR=utils
 OBJDIR=objs
 
 MAIN_SRC=main.c parse_input.c
-STACK_SRC=stack.c stack_visualizer.c push_stack.c swap_stack.c rotate_stack.c \
-		  reverse_rotate_stack.c
-QUEUE_SRC=init_queue.c new_node_queue.c push_queue.c pop_queue.c
+STACK_SRC=init_stack.c clone_stack.c free_stack.c stack_visualizer.c \
+		  push_stack.c swap_stack.c rotate_stack.c reverse_rotate_stack.c 
+QUEUE_SRC=init_queue.c free_queue.c push_queue.c pop_queue.c
 UTILS_SRC=ft_print.c
 SRCS=$(MAIN_SRC) $(STACK_SRC) $(QUEUE_SRC) $(UTILS_SRC)
 
