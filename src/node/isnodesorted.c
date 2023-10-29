@@ -16,18 +16,21 @@ int	isnodesorted(t_node *node)
 {
 	t_stack	*stack;
 	int		i;
+	int		count;
 	int		n;
 
 	stack = node->stack_a;
 	if (stack->cur_size != stack->size)
 		return (0);
-	i = 0;
+	i = stack->first;
+	count = 0;
 	n = stack->size - 1;
-	while (i < n)
+	while (count < n)
 	{
-		if (stack->arr[i] > stack->arr[i + 1])
+		if (stack->arr[i] > stack->arr[(i + 1) % stack->size])
 			return (0);
-		i++;
+		i = (i + 1) % stack->size;
+		count++;
 	}
 	return (1);
 }

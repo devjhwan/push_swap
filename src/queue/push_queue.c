@@ -12,6 +12,9 @@
 
 #include "queue.h"
 
+#define SUCCESS 0
+#define ERROR 1
+
 static t_queue_node	*new_node_queue(void *content)
 {
 	t_queue_node	*node;
@@ -31,7 +34,7 @@ int	push_queue(t_queue *queue, void *content)
 
 	new_node = new_node_queue(content);
 	if (new_node == NULL)
-		return (1);
+		return (ERROR);
 	if (queue->size == 0)
 	{
 		queue->list = new_node;
@@ -45,5 +48,5 @@ int	push_queue(t_queue *queue, void *content)
 		last_node->next = new_node;
 		queue->size++;
 	}
-	return (0);
+	return (SUCCESS);
 }

@@ -14,16 +14,59 @@
 #include "utils.h"
 #include <stdlib.h>
 
+static char	*get_action_str(t_action action)
+{
+	if (action == PA)
+		return ("pa\n");
+	else if (action == PB)
+		return ("pb\n");
+	else if (action == SA)
+		return ("sa\n");
+	else if (action == SB)
+		return ("sb\n");
+	else if (action == SS)
+		return ("ss\n");
+	else if (action == RA)
+		return ("ra\n");
+	else if (action == RB)
+		return ("rb\n");
+	else if (action == RR)
+		return ("rr\n");
+	else if (action == RRA)
+		return ("rra\n");
+	else if (action == RRB)
+		return ("rrb\n");
+	else if (action == RRR)
+		return ("rrr\n");
+	else
+		return ("Error\n");
+}
+
+static void	print_actions(t_action *actions)
+{
+	int	i;
+
+	i = 1;
+	while (actions[i] != '\0')
+		i++;
+	i--;
+	while (actions[i] != '\0')
+	{
+		ft_putstr(get_action_str(actions[i]));
+		i--;
+	}
+}
+
 static void	sort_stack(t_node *node)
 {
-	char	*actions;
+	t_action	*actions;
 
 	actions = NULL;
 	if (node->stack_a->size <= 5)
 		actions = breadth_first_search(node);
 	if (actions != NULL)
 	{
-		ft_putstr(actions);
+		print_actions(actions);
 		free(actions);
 	}
 }

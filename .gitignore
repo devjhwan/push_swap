@@ -4,3 +4,5 @@ push_swap
 *.o
 *.d
 output
+trace*
+norm

@@ -14,6 +14,10 @@
 # define PUSH_SWAP_H
 
 # include "stack.h"
+# include <stdio.h>
+# include "utils.h"
+
+typedef char	t_action;
 
 # define NONE 0
 # define PA 1
@@ -32,29 +36,30 @@ typedef struct s_node
 {
 	t_stack			*stack_a;
 	t_stack			*stack_b;
-	char			last_action;
+	struct s_node	**adjacent_nodes;
 	struct s_node	*prev_node;
+	t_action		last_action;
 }	t_node;
 
-void	*parse_input(t_stack *stack_a, char **argv);
-t_node	*init_node(char **argv);
-void	free_node(void *node);
-int		isnodesorted(t_node *node);
-t_node	*clone_node(t_node *node, void (*act_function)(t_node *), char action);
-t_node	**get_adjacent_nodes(t_node *node);
+void		*parse_input(t_stack *stack_a, char **argv);
+t_node		*init_node(char **argv);
+void		free_node(void *node);
+int			isnodesorted(t_node *node);
+t_node		*clone_node(t_node *node, void (*act_function)(t_node *), \
+					t_action action);
+t_node		**get_adjacent_nodes(t_node *node);
+t_action	*breadth_first_search(t_node *init_node);
 
-char	*breadth_first_search(t_node *init_node);
-
-void	pa(t_node *node);
-void	pb(t_node *node);
-void	sa(t_node *node);
-void	sb(t_node *node);
-void	ss(t_node *node);
-void	ra(t_node *node);
-void	rb(t_node *node);
-void	rr(t_node *node);
-void	rra(t_node *node);
-void	rrb(t_node *node);
-void	rrr(t_node *node);
+void		pa(t_node *node);
+void		pb(t_node *node);
+void		sa(t_node *node);
+void		sb(t_node *node);
+void		ss(t_node *node);
+void		ra(t_node *node);
+void		rb(t_node *node);
+void		rr(t_node *node);
+void		rra(t_node *node);
+void		rrb(t_node *node);
+void		rrr(t_node *node);
 
 #endif

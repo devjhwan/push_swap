@@ -52,6 +52,7 @@ t_node	*init_node(char **argv)
 	size = count_arguments(argv);
 	node->stack_a = init_stack(size);
 	node->stack_b = init_stack(size);
+	node->adjacent_nodes = NULL;
 	node->prev_node = NULL;
 	node->last_action = NONE;
 	if (node->stack_a == NULL || node->stack_b == NULL)

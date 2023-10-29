@@ -13,7 +13,8 @@
 #include "push_swap.h"
 #include <stdlib.h>
 
-t_node	*clone_node(t_node *node, void (*act_function)(t_node *), char action)
+t_node	*clone_node(t_node *node, void (*act_function)(t_node *), \
+					t_action action)
 {
 	t_node	*node_clone;
 
@@ -25,6 +26,7 @@ t_node	*clone_node(t_node *node, void (*act_function)(t_node *), char action)
 	if (node_clone->stack_a == NULL || node_clone->stack_b == NULL)
 		return (free_node(node_clone), NULL);
 	act_function(node_clone);
+	node_clone->adjacent_nodes = NULL;
 	node_clone->prev_node = node;
 	node_clone->last_action = action;
 	return (node_clone);
