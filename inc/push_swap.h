@@ -14,8 +14,6 @@
 # define PUSH_SWAP_H
 
 # include "stack.h"
-# include <stdio.h>
-# include "utils.h"
 
 typedef char	t_action;
 
@@ -48,6 +46,9 @@ int			isnodesorted(t_node *node);
 t_node		*clone_node(t_node *node, void (*act_function)(t_node *), \
 					t_action action);
 t_node		**get_adjacent_nodes(t_node *node);
+t_node		*find_sorted_node(t_node **nodes);
+t_action	*get_sort_actions(t_node *sorted_node);
+
 t_action	*breadth_first_search(t_node *init_node);
 
 void		pa(t_node *node);

@@ -24,6 +24,7 @@ typedef struct s_queue_node
 typedef struct s_queue
 {
 	t_queue_node	*list;
+	t_queue_node	*last;
 	int				size;
 }	t_queue;
 

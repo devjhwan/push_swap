@@ -26,7 +26,7 @@ STACK_SRC=init_stack.c clone_stack.c free_stack.c stack_visualizer.c \
 QUEUE_SRC=init_queue.c free_queue.c push_queue.c pop_queue.c
 UTILS_SRC=ft_print.c
 NODE_SRC=init_node.c free_node.c isnodesorted.c clone_node.c \
-		 get_adjacent_nodes.c
+		 get_adjacent_nodes.c find_sorted_node.c get_sort_actions.c
 GRAPH_SEARCH_SRC=breadth_first_search.c
 SRCS=$(MAIN_SRC) $(STACK_SRC) $(QUEUE_SRC) $(UTILS_SRC) \
 	 $(NODE_SRC) $(GRAPH_SEARCH_SRC)

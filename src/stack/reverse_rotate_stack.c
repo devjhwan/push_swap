@@ -16,7 +16,10 @@ void	reverse_rotate_stack(t_stack *stack)
 {
 	if (stack->cur_size >= 2)
 	{
-		stack->first = stack->last;
+		stack->first = stack->first - 1;
+		if (stack->first < 0)
+			stack->first = stack->size - 1;
+		stack->arr[stack->first] = stack->arr[stack->last];
 		stack->last = stack->last - 1;
 		if (stack->last < 0)
 			stack->last = stack->size - 1;

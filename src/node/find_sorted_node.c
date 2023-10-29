@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_queue.c                                       :+:      :+:    :+:   */
+/*   find_sorted_node.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 15:16:18 by junghwle          #+#    #+#             */
-/*   Updated: 2023/10/28 15:16:19 by junghwle         ###   ########.fr       */
+/*   Created: 2023/10/29 19:52:14 by junghwle          #+#    #+#             */
+/*   Updated: 2023/10/29 19:52:15 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "queue.h"
+#include "push_swap.h"
+#include <stdlib.h>
 
-t_queue	*init_queue(void)
+t_node	*find_sorted_node(t_node **nodes)
 {
-	t_queue	*queue;
+	int		i;
 
-	queue = (t_queue *)malloc(sizeof(t_queue));
-	if (queue == NULL)
-		return (NULL);
-	queue->list = NULL;
-	queue->last = NULL;
-	queue->size = 0;
-	return (queue);
+	i = 0;
+	while (nodes[i] != NULL)
+	{
+		if (isnodesorted(nodes[i]))
+			return (nodes[i]);
+		i++;
+	}
+	return (NULL);
 }

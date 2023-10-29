@@ -30,7 +30,6 @@ static t_queue_node	*new_node_queue(void *content)
 int	push_queue(t_queue *queue, void *content)
 {
 	t_queue_node	*new_node;
-	t_queue_node	*last_node;
 
 	new_node = new_node_queue(content);
 	if (new_node == NULL)
@@ -38,14 +37,13 @@ int	push_queue(t_queue *queue, void *content)
 	if (queue->size == 0)
 	{
 		queue->list = new_node;
+		queue->last = new_node;
 		queue->size++;
 	}
 	else
 	{
-		last_node = queue->list;
-		while (last_node->next != NULL)
-			last_node = last_node->next;
-		last_node->next = new_node;
+		queue->last->next = new_node;
+		queue->last = new_node;
 		queue->size++;
 	}
 	return (SUCCESS);
