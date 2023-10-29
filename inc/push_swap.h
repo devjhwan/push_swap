@@ -49,7 +49,8 @@ t_node		**get_adjacent_nodes(t_node *node);
 t_node		*find_sorted_node(t_node **nodes);
 t_action	*get_sort_actions(t_node *sorted_node);
 
-t_action	*breadth_first_search(t_node *init_node);
+t_action	*breadth_first_search(t_node *start_node);
+t_action	*a_star_search(t_node *start_node);
 
 void		pa(t_node *node);
 void		pb(t_node *node);

@@ -64,6 +64,8 @@ static void	sort_stack(t_node *node)
 	actions = NULL;
 	if (node->stack_a->size <= 5)
 		actions = breadth_first_search(node);
+	else
+		actions = a_star_search(node);
 	if (actions != NULL)
 	{
 		print_actions(actions);

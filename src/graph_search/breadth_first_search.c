@@ -12,6 +12,7 @@
 
 #include "push_swap.h"
 #include "queue.h"
+#include <stdlib.h>
 
 #define SUCCESS 0
 #define ERROR 1
