@@ -11,12 +11,24 @@
 /* ************************************************************************** */
 
 #include "priority_queue.h"
+#include "utils.h"
 
-void	push_priority_queue(t_pqueue *pqueue, void *content, int priority)
+#define SUCCESS 0
+#define ERROR 1
+
+int	push_priority_queue(t_pqueue *pqueue, void *content, int priority)
 {
 	int			i;
 
 	pqueue->size++;
+	if (pqueue->size > pqueue->maxsize)
+	{
+		pqueue->maxsize *= 1.2;
+		pqueue->heap = ft_realloc(pqueue->heap, \
+							sizeof(t_pqnode) * (pqueue->maxsize + 1));
+		if (pqueue->heap == NULL)
+			return (ERROR);
+	}
 	i = pqueue->size;
 	while ((i > 1) && (priority > pqueue->heap[i / 2].priority))
 	{
@@ -25,4 +37,5 @@ void	push_priority_queue(t_pqueue *pqueue, void *content, int priority)
 	}
 	pqueue->heap[i].content = content;
 	pqueue->heap[i].priority = priority;
+	return (SUCCESS);
 }

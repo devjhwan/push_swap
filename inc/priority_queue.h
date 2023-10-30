@@ -30,7 +30,7 @@ typedef struct s_pqueue
 
 t_pqueue	*init_priority_queue(void);
 void		free_priority_queue(t_pqueue *pqueue, void (*delfunc)(void *));
-void		push_priority_queue(t_pqueue *pqueue, void *content, int priority);
+int			push_priority_queue(t_pqueue *pqueue, void *content, int priority);
 void		*pop_priority_queue(t_pqueue *pqueue);
 
 #endif

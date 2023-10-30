@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/27 22:10:26 by junghwle          #+#    #+#             */
-/*   Updated: 2023/10/27 22:10:27 by junghwle         ###   ########.fr       */
+/*   Created: 2023/10/30 03:23:47 by junghwle          #+#    #+#             */
+/*   Updated: 2023/10/30 03:23:48 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include <stdlib.h>
 
-# include <stdlib.h>
+void	*ft_realloc(void *ptr, size_t size)
+{
+	char	*new_ptr;
+	char	*old_ptr;
+	size_t	i;
 
-int		ft_putchar(int ch);
-int		ft_putstr(char *str);
-int		ft_putnbr(int num);
-void	*ft_realloc(void *ptr, size_t size);
-
-#endif
+	if (size == 0)
+		return (free(ptr), NULL);
+	new_ptr = (char *)malloc(sizeof(char) * size);
+	if (new_ptr == NULL || ptr == NULL)
+		return (new_ptr);
+	i = 0;
+	old_ptr = (char *)ptr;
+	while (i < size)
+	{
+		new_ptr[i] = old_ptr[i];
+		i++;
+	}
+	free(ptr);
+	return ((void *)new_ptr);
+}
