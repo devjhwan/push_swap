@@ -57,7 +57,7 @@ static void	print_actions(t_action *actions)
 	}
 }
 
-static void	sort_stack(t_node *node)
+static void	sort_push_swap(t_node *node)
 {
 	t_action	*actions;
 
@@ -83,7 +83,7 @@ int	main(int argc, char **argv)
 	if (node == NULL)
 		return (0);
 	if (isnodesorted(node) == 0)
-		sort_stack(node);
+		sort_push_swap(node);
 	free_node(node);
 	return (0);
 }
