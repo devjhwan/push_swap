@@ -14,7 +14,7 @@
 #include "utils.h"
 
 #define ERROR 0
-#define SUCCESSFUL 1
+#define SUCCESS 1
 
 int	print_stack(t_stack *stack)
 {
@@ -36,5 +36,5 @@ int	print_stack(t_stack *stack)
 		i = (i + 1) % stack->size;
 		count++;
 	}
-	return (SUCCESSFUL);
+	return (SUCCESS);
 }

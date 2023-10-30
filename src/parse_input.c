@@ -18,7 +18,7 @@
 #define INT_MIN -2147483648
 #define DUPLICATED 1
 #define CORRECT 0
-#define SUCCESSFUL 0
+#define SUCCESS 0
 #define ERROR 1
 
 static long long int	ft_atoi(char *arg, int *i)
@@ -68,7 +68,7 @@ static int	fill_stack(t_stack *stack_a, char *arg)
 		while (arg[i] == ' ')
 			i++;
 		if (arg[i] == '\0')
-			return (SUCCESSFUL);
+			return (SUCCESS);
 		num = ft_atoi(arg, &i);
 		if (num > INT_MAX || num < INT_MIN)
 			return (ERROR);
@@ -80,7 +80,7 @@ static int	fill_stack(t_stack *stack_a, char *arg)
 			return (ERROR);
 	}
 	stack_a->cur_size = stack_a->last;
-	return (SUCCESSFUL);
+	return (SUCCESS);
 }
 
 void	*parse_input(t_stack *stack_a, char **argv)
@@ -90,7 +90,7 @@ void	*parse_input(t_stack *stack_a, char **argv)
 	i = 1;
 	while (argv[i] != NULL)
 	{
-		if (fill_stack(stack_a, argv[i]) != SUCCESSFUL)
+		if (fill_stack(stack_a, argv[i]) != SUCCESS)
 			return (NULL);
 		i++;
 	}

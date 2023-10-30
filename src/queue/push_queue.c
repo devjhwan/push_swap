@@ -15,7 +15,7 @@
 #define SUCCESS 0
 #define ERROR 1
 
-static t_queue_node	*new_node_queue(void *content)
+static t_queue_node	*new_queue_node(void *content)
 {
 	t_queue_node	*node;
 
@@ -31,7 +31,7 @@ int	push_queue(t_queue *queue, void *content)
 {
 	t_queue_node	*new_node;
 
-	new_node = new_node_queue(content);
+	new_node = new_queue_node(content);
 	if (new_node == NULL)
 		return (ERROR);
 	if (queue->size == 0)

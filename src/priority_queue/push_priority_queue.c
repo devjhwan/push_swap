@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_priority_queue.c                              :+:      :+:    :+:   */
+/*   push_priority_queue.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 02:24:58 by junghwle          #+#    #+#             */
-/*   Updated: 2023/10/30 02:24:59 by junghwle         ###   ########.fr       */
+/*   Created: 2023/10/30 02:50:26 by junghwle          #+#    #+#             */
+/*   Updated: 2023/10/30 02:50:27 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "priority_queue.h"
-#include <stdlib.h>
 
-t_pqueue	*init_priority_queue(void)
+void	push_priority_queue(t_pqueue *pqueue, void *content, int priority)
 {
-	t_pqueue	*pqueue;
+	int			i;
 
-	pqueue = (t_pqueue *)malloc(sizeof(t_pqueue));
-	if (pqueue == NULL)
-		return (NULL);
-	pqueue->size = 0;
-	pqueue->maxsize = INIT_SIZE;
-	pqueue->heap = (t_pqnode *)malloc(sizeof(t_pqnode) * (INIT_SIZE + 1));
-	if (pqueue->heap == NULL)
-		return (free_priority_queue(pqueue, NULL), NULL);
-	return (pqueue);
+	pqueue->size++;
+	i = pqueue->size;
+	while ((i > 1) && (priority > pqueue->heap[i / 2].priority))
+	{
+		pqueue->heap[i] = pqueue->heap[i / 2];
+		i /= 2;
+	}
+	pqueue->heap[i].content = content;
+	pqueue->heap[i].priority = priority;
 }

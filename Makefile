@@ -29,7 +29,8 @@ UTILS_SRC=ft_print.c
 NODE_SRC=init_node.c free_node.c isnodesorted.c clone_node.c \
 		 get_adjacent_nodes.c find_sorted_node.c get_sort_actions.c
 GRAPH_SEARCH_SRC=breadth_first_search.c a_star_search.c
-PRIORITY_QUEUE_SRC=
+PRIORITY_QUEUE_SRC=init_priority_queue.c free_priority_queue.c \
+				   push_priority_queue.c pop_priority_queue.c
 SRCS=$(MAIN_SRC) $(STACK_SRC) $(QUEUE_SRC) $(UTILS_SRC) \
 	 $(NODE_SRC) $(GRAPH_SEARCH_SRC) $(PRIORITY_QUEUE_SRC)
 
@@ -77,6 +78,9 @@ $(OBJDIR)/%.o: $(SRCDIR)/$(PRIORITY_QUEUE_DIR)/%.c Makefile
 
 $(OBJDIR): Makefile
 	mkdir -p $@
+
+test_pqueue:
+	$(CC) $(CFLAGS) $(INCLUDE) -o $@ $(SRCDIR)/$(PRIORITY_QUEUE_DIR)/*.c
 
 clean:
 	rm -rf $(OBJDIR)
