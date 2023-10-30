@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   priority_queue.h                                   :+:      :+:    :+:   */
+/*   free_priority_queue.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/29 20:07:29 by junghwle          #+#    #+#             */
-/*   Updated: 2023/10/29 20:07:30 by junghwle         ###   ########.fr       */
+/*   Created: 2023/10/30 02:32:53 by junghwle          #+#    #+#             */
+/*   Updated: 2023/10/30 02:32:53 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRIORITY_QUEUE_H
-# define PRIORITY_QUEUE_H
+#include "priority_queue.h"
+#include <stdlib.h>
 
-# define INIT_SIZE 1000
-
-typedef struct s_pqnode
+void	free_priority_queue(t_pqueue *pqueue, void (*delfunc)(void *))
 {
-	void	*content;
-	int		priority;
-}	t_pqnode;
+	int		i;
 
-typedef struct s_pqueue
-{
-	t_pqnode	*heap;
-	int			size;
-	int			maxsize;
-}	t_pqueue;
-
-t_pqueue	*init_priority_queue(void);
-void		free_priority_queue(t_pqueue *pqueue, void (*delfunc)(void *));
-
-#endif
+	if (pqueue->heap != NULL)
+	{
+		if (delfunc != NULL)
+		{
+			i = 1;
+			while (i < pqueue->size)
+			{
+				delfunc(pqueue->heap[i].content);
+				pqueue->heap[i].content = NULL;
+				i++;
+			}
+		}
+		free(pqueue->heap);
+		pqueue->heap = NULL;
+	}
+	free(pqueue);
+}

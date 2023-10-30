@@ -18,6 +18,7 @@ QUEUE_DIR=queue
 UTILS_DIR=utils
 NODE_DIR=node
 GRAPH_SEARCH_DIR=graph_search
+PRIORITY_QUEUE_DIR=priority_queue
 OBJDIR=objs
 
 MAIN_SRC=main.c parse_input.c push.c swap.c rotate.c reverse_rotate.c 
@@ -28,8 +29,9 @@ UTILS_SRC=ft_print.c
 NODE_SRC=init_node.c free_node.c isnodesorted.c clone_node.c \
 		 get_adjacent_nodes.c find_sorted_node.c get_sort_actions.c
 GRAPH_SEARCH_SRC=breadth_first_search.c a_star_search.c
+PRIORITY_QUEUE_SRC=
 SRCS=$(MAIN_SRC) $(STACK_SRC) $(QUEUE_SRC) $(UTILS_SRC) \
-	 $(NODE_SRC) $(GRAPH_SEARCH_SRC)
+	 $(NODE_SRC) $(GRAPH_SEARCH_SRC) $(PRIORITY_QUEUE_SRC)
 
 OBJS=$(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
 DEPS=$(OBJS:.o=.d)
@@ -69,14 +71,12 @@ $(OBJDIR)/%.o: $(SRCDIR)/$(GRAPH_SEARCH_DIR)/%.c Makefile
 	$(CC) $(DEPFLAGS) $(CFLAGS) $(INCLUDE) -c -o $@ $<
 	echo "(PUSH_SWAP) COMPILING $@"
 
+$(OBJDIR)/%.o: $(SRCDIR)/$(PRIORITY_QUEUE_DIR)/%.c Makefile 
+	$(CC) $(DEPFLAGS) $(CFLAGS) $(INCLUDE) -c -o $@ $<
+	echo "(PUSH_SWAP) COMPILING $@"
+
 $(OBJDIR): Makefile
 	mkdir -p $@
-
-test_queue:
-	$(CC) $(CFLAGS) $(INCLUDE) -o $@ $(SRCDIR)/$(QUEUE_DIR)/*.c
-	echo "(TESTING_QUEUE) COMPILING $@"
-	valgrind ./test_queue
-	rm -f test_queue
 
 clean:
 	rm -rf $(OBJDIR)

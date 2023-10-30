@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   priority_queue.h                                   :+:      :+:    :+:   */
+/*   init_priority_queue.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/29 20:07:29 by junghwle          #+#    #+#             */
-/*   Updated: 2023/10/29 20:07:30 by junghwle         ###   ########.fr       */
+/*   Created: 2023/10/30 02:24:58 by junghwle          #+#    #+#             */
+/*   Updated: 2023/10/30 02:24:59 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRIORITY_QUEUE_H
-# define PRIORITY_QUEUE_H
+#include "priority_queue.h"
+#include <stdlib.h>
 
-# define INIT_SIZE 1000
-
-typedef struct s_pqnode
+t_pqueue	*init_priority_queue(void)
 {
-	void	*content;
-	int		priority;
-}	t_pqnode;
+	t_pqueue	*pqueue;
 
-typedef struct s_pqueue
-{
-	t_pqnode	*heap;
-	int			size;
-	int			maxsize;
-}	t_pqueue;
-
-t_pqueue	*init_priority_queue(void);
-void		free_priority_queue(t_pqueue *pqueue, void (*delfunc)(void *));
-
-#endif
+	pqueue = (t_pqueue *)malloc(sizeof(t_pqueue));
+	if (pqueue == NULL)
+		return (NULL);
+	pqueue->size = 0;
+	pqueue->maxsize = INIT_SIZE;
+	pqueue->heap = (t_pqnode *)malloc(sizeof(t_pqnode) * (INIT_SIZE + 1));
+	if (pqueue->heap == NULL)
+		return (free_priority_queue(pqueue), NULL);
+	return (pqueue);
+}
