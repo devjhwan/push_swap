@@ -55,6 +55,8 @@ t_node	*init_node(char **argv)
 	node->adjacent_nodes = NULL;
 	node->prev_node = NULL;
 	node->last_action = NONE;
+	node->cost = 0;
+	node->heuristic = 0;
 	if (node->stack_a == NULL || node->stack_b == NULL)
 		return (free_node(node), NULL);
 	if (parse_input(node->stack_a, argv) == NULL)

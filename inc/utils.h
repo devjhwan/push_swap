@@ -18,6 +18,8 @@
 int		ft_putchar(int ch);
 int		ft_putstr(char *str);
 int		ft_putnbr(int num);
-void	*ft_realloc(void *ptr, size_t size);
+void	*ft_realloc(void *ptr, size_t size, size_t old_size);
+int		ft_pow(int nb, int exp);
+int		ft_abs(int nb);
 
 #endif

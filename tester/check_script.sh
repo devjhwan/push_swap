@@ -11,6 +11,7 @@ function generate_permutations {
         echo -n "\"$ARG\" "
         start_time=$(date +%s.%N)
         ./push_swap $ARG > actions.txt
+        cat actions.txt >> accumulate_actions.txt
         end_time=$(date +%s.%N)
         execution_time=$( echo "$end_time - $start_time" | bc -l )
 		echo -n "$(cat actions.txt | wc -l) "

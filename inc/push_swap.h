@@ -37,6 +37,8 @@ typedef struct s_node
 	struct s_node	**adjacent_nodes;
 	struct s_node	*prev_node;
 	t_action		last_action;
+	int				cost;
+	int				heuristic;
 }	t_node;
 
 void		*parse_input(t_stack *stack_a, char **argv);

@@ -48,13 +48,13 @@ static int	find_swap(t_node **adjacent_nodes, t_node *node, int *count)
 			return (ERROR);
 		adjacent_nodes[(*count)++] = node_clone;
 	}
-	if (node->stack_b->cur_size >= 2 && node->last_action != SB)
-	{
-		node_clone = clone_node(node, sb, SB);
-		if (node_clone == NULL)
-			return (ERROR);
-		adjacent_nodes[(*count)++] = node_clone;
-	}
+	// if (node->stack_b->cur_size >= 2 && node->last_action != SB)
+	// {
+	// 	node_clone = clone_node(node, sb, SB);
+	// 	if (node_clone == NULL)
+	// 		return (ERROR);
+	// 	adjacent_nodes[(*count)++] = node_clone;
+	// }
 	if (node->stack_a->cur_size >= 2 && node->stack_b->cur_size >= 2 && \
 		node->last_action != SS)
 	{
@@ -77,13 +77,13 @@ static int	find_rotate(t_node **adjacent_nodes, t_node *node, int *count)
 			return (ERROR);
 		adjacent_nodes[(*count)++] = node_clone;
 	}
-	if (node->stack_b->cur_size >= 2 && node->last_action != RRB)
-	{
-		node_clone = clone_node(node, rb, RB);
-		if (node_clone == NULL)
-			return (ERROR);
-		adjacent_nodes[(*count)++] = node_clone;
-	}
+	// if (node->stack_b->cur_size >= 2 && node->last_action != RRB)
+	// {
+	// 	node_clone = clone_node(node, rb, RB);
+	// 	if (node_clone == NULL)
+	// 		return (ERROR);
+	// 	adjacent_nodes[(*count)++] = node_clone;
+	// }
 	if (node->stack_a->cur_size >= 2 && node->stack_b->cur_size >= 2 && \
 		node->last_action != RRR)
 	{
@@ -107,13 +107,13 @@ static int	find_reverse_rotate(t_node **adjacent_nodes, \
 			return (ERROR);
 		adjacent_nodes[(*count)++] = node_clone;
 	}
-	if (node->stack_b->cur_size >= 2 && node->last_action != RB)
-	{
-		node_clone = clone_node(node, rrb, RRB);
-		if (node_clone == NULL)
-			return (ERROR);
-		adjacent_nodes[(*count)++] = node_clone;
-	}
+	// if (node->stack_b->cur_size >= 2 && node->last_action != RB)
+	// {
+	// 	node_clone = clone_node(node, rrb, RRB);
+	// 	if (node_clone == NULL)
+	// 		return (ERROR);
+	// 	adjacent_nodes[(*count)++] = node_clone;
+	// }
 	if (node->stack_a->cur_size >= 2 && node->stack_b->cur_size >= 2 && \
 		node->last_action != RR)
 	{
@@ -133,6 +133,9 @@ t_node	**get_adjacent_nodes(t_node *node)
 	adjacent_nodes = (t_node **)malloc(sizeof(t_node *) * 12);
 	if (adjacent_nodes == NULL)
 		return (NULL);
+	count = 0;
+	while (count < 12)
+		adjacent_nodes[count++] = NULL;
 	count = 0;
 	if (find_push(adjacent_nodes, node, &count) == ERROR || \
 		find_swap(adjacent_nodes, node, &count) == ERROR || \

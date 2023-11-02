@@ -62,7 +62,7 @@ static void	sort_push_swap(t_node *node)
 	t_action	*actions;
 
 	actions = NULL;
-	if (node->stack_a->size <= 5)
+	if (node->stack_a->size <= 0)
 		actions = breadth_first_search(node);
 	else
 		actions = a_star_search(node);

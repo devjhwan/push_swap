@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 
-void	*ft_realloc(void *ptr, size_t size)
+void	*ft_realloc(void *ptr, size_t size, size_t old_size)
 {
 	char	*new_ptr;
 	char	*old_ptr;
@@ -22,10 +23,10 @@ void	*ft_realloc(void *ptr, size_t size)
 		return (free(ptr), NULL);
 	new_ptr = (char *)malloc(sizeof(char) * size);
 	if (new_ptr == NULL || ptr == NULL)
-		return (new_ptr);
+		return (free(ptr), free(new_ptr), NULL);
 	i = 0;
 	old_ptr = (char *)ptr;
-	while (i < size)
+	while (i < old_size)
 	{
 		new_ptr[i] = old_ptr[i];
 		i++;

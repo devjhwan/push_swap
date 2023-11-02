@@ -30,9 +30,9 @@ void	*pop_priority_queue(t_pqueue *pqueue)
 	while (child <= pqueue->size)
 	{
 		if ((child < pqueue->size) && \
-			(pqueue->heap[child].priority < pqueue->heap[child + 1].priority))
+			(pqueue->heap[child].priority > pqueue->heap[child + 1].priority))
 			child++;
-		if (tmp.priority >= pqueue->heap[child].priority)
+		if (tmp.priority <= pqueue->heap[child].priority)
 			break ;
 		pqueue->heap[parent] = pqueue->heap[child];
 		parent = child;
