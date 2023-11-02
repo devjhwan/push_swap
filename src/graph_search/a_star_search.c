@@ -15,7 +15,6 @@
 #include "stack.h"
 #include "utils.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 #define SUCCESS 0
 #define ERROR 1
@@ -50,13 +49,13 @@ static int	calculate_cost(t_node *node, t_node *next_node)
 
 	act = next_node->last_action;
 	if (act == SB || act == RB || act == RRB)
-		cost = node->cost + 10000;
-	else if (act == RR || act == RRR || act == SS)
 		cost = node->cost + 100;
-	else if (act == RA || act == RRA)
-		cost = node->cost + 11;
-	else if (act == PA || act == PB || act == SA)
+	else if (act == RR || act == RRR || act == SS)
 		cost = node->cost + 10;
+	else if (act == RA || act == RRA)
+		cost = node->cost + 2;
+	else if (act == PA || act == PB || act == SA)
+		cost = node->cost + 1;
 	return (cost);
 }
 
@@ -99,7 +98,6 @@ t_action	*a_star_search(t_node *start_node)
 	t_node		*cur_node;
 	t_node		*sorted_node;
 	char		*actions;
-	int			debug;
 
 	pqueue = init_priority_queue();
 	if (pqueue == NULL)
@@ -112,15 +110,6 @@ t_action	*a_star_search(t_node *start_node)
 	cur_node = (t_node *)pop_priority_queue(pqueue);
 	while (!isnodesorted(cur_node))
 	{
-		print_stack(cur_node->stack_a);
-		print_stack(cur_node->stack_b);
-		ft_putstr("cost = ");
-		ft_putnbr(cur_node->cost);
-		ft_putchar('\n');
-		ft_putstr("heuristic = ");
-		ft_putnbr(cur_node->heuristic);
-		ft_putchar('\n');
-		(void)debug;
 		if (push_adjacent_nodes(pqueue, cur_node, sorted_node) == ERROR)
 			return (free_priority_queue(pqueue, NULL), \
 					free(sorted_node), NULL);

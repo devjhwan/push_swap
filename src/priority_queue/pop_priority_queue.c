@@ -29,14 +29,14 @@ void	*pop_priority_queue(t_pqueue *pqueue)
 	child = 2;
 	while (child <= pqueue->size)
 	{
-		if ((child < pqueue->size) && \
+		if ((child + 1 <= pqueue->size) && \
 			(pqueue->heap[child].priority > pqueue->heap[child + 1].priority))
 			child++;
 		if (tmp.priority <= pqueue->heap[child].priority)
 			break ;
 		pqueue->heap[parent] = pqueue->heap[child];
 		parent = child;
-		child = child * 2;
+		child *= 2;
 	}
 	pqueue->heap[parent] = tmp;
 	return (content);
