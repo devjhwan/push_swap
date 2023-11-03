@@ -20,11 +20,5 @@ int		ft_putstr(char *str);
 int		ft_putnbr(int num);
 void	*ft_calloc(size_t count, size_t size);
 void	*ft_realloc(void *ptr, size_t newsize);
-void	ft_bzero(void *arr, size_t size);
-void	*ft_memcpy(void *dest, const void *src, size_t size);
-char	*ft_strcat(char *str1, const char *str2);
-size_t	ft_strlen(const char *str);
-int		ft_pow(int nb, int exp);
-int		ft_abs(int nb);
 
 #endif

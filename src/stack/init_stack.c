@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "stack.h"
+#include "utils.h"
 #include <stdlib.h>
 
 t_stack	*init_stack(int size)
@@ -20,7 +21,7 @@ t_stack	*init_stack(int size)
 	stack = (t_stack *)malloc(sizeof(t_stack));
 	if (stack == NULL)
 		return (NULL);
-	stack->arr = (int *)malloc(sizeof(int) * size);
+	stack->arr = (int *)ft_calloc(size, sizeof(int));
 	if (stack->arr == NULL)
 		return (free_stack(stack), NULL);
 	stack->size = size;
