@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "hash.h"
+#include "utils.h"
+#include <stdlib.h>
 
 t_hash	**init_hash(void)
 {

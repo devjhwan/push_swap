@@ -17,6 +17,7 @@ STACK_DIR=stack
 QUEUE_DIR=queue
 UTILS_DIR=utils
 NODE_DIR=node
+HASH_DIR=hash
 GRAPH_SEARCH_DIR=graph_search
 PRIORITY_QUEUE_DIR=priority_queue
 OBJDIR=objs
@@ -30,11 +31,12 @@ UTILS_SRC=ft_print.c ft_realloc.c ft_memcpy.c ft_pow.c ft_abs.c \
 		  ft_bzero.c ft_calloc.c
 NODE_SRC=init_node.c free_node.c isnodesorted.c clone_node.c \
 		 get_adjacent_nodes.c find_sorted_node.c get_sort_actions.c
+HASH_SRC=init_hash.c free_hash.c
 GRAPH_SEARCH_SRC=breadth_first_search.c a_star_search.c
 PRIORITY_QUEUE_SRC=init_priority_queue.c free_priority_queue.c \
 				   push_priority_queue.c pop_priority_queue.c
 SRCS=$(MAIN_SRC) $(STACK_SRC) $(QUEUE_SRC) $(UTILS_SRC) \
-	 $(NODE_SRC) $(GRAPH_SEARCH_SRC) $(PRIORITY_QUEUE_SRC)
+	 $(NODE_SRC) $(HASH_SRC) $(GRAPH_SEARCH_SRC) $(PRIORITY_QUEUE_SRC)
 
 OBJS=$(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
 DEPS=$(OBJS:.o=.d)
@@ -67,6 +69,10 @@ $(OBJDIR)/%.o: $(SRCDIR)/$(UTILS_DIR)/%.c Makefile
 	echo "(PUSH_SWAP) COMPILING $@"
 
 $(OBJDIR)/%.o: $(SRCDIR)/$(NODE_DIR)/%.c Makefile 
+	$(CC) $(DEPFLAGS) $(CFLAGS) $(INCLUDE) -c -o $@ $<
+	echo "(PUSH_SWAP) COMPILING $@"
+
+$(OBJDIR)/%.o: $(SRCDIR)/$(HASH_DIR)/%.c Makefile 
 	$(CC) $(DEPFLAGS) $(CFLAGS) $(INCLUDE) -c -o $@ $<
 	echo "(PUSH_SWAP) COMPILING $@"
 

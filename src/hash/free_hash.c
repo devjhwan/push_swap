@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "hash.h"
+#include <stdlib.h>
 
 void	free_hash(t_hash **hash, void (*delfunc)(void *))
 {

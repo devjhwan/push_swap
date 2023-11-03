@@ -16,7 +16,7 @@
 typedef struct s_hash
 {
 	void			*content;
-	struct s_list	*next;
+	struct s_hash	*next;
 }	t_hash;
 
 # define HASH_SIZE 1000000

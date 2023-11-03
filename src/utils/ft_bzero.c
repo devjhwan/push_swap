@@ -27,4 +27,3 @@ void	ft_bzero(void *arr, size_t size)
 		i++;
 	}
 }
-
