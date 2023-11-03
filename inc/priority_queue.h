@@ -18,7 +18,7 @@
 typedef struct s_pqnode
 {
 	void	*content;
-	int		priority;
+	double	priority;
 }	t_pqnode;
 
 typedef struct s_pqueue

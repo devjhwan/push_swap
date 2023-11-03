@@ -15,37 +15,15 @@
 #include "stack.h"
 #include "utils.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 #define SUCCESS 0
 #define ERROR 1
 
-static t_node	*sort_node(t_node *node)
-{
-	t_node	*sorted_node;
-
-	sorted_node = (t_node *)malloc(sizeof(t_node));
-	if (sorted_node == NULL)
-		return (NULL);
-	sorted_node->stack_a = clone_stack(node->stack_a);
-	if (sorted_node->stack_a == NULL)
-		return (free(sorted_node), NULL);
-	sort_stack(sorted_node->stack_a);
-	if (reset_index_stack(node->stack_a, sorted_node->stack_a) == ERROR)
-		return (free(sorted_node), free(sorted_node->stack_a), NULL);
-	sorted_node->stack_b = clone_stack(node->stack_a);
-	if (sorted_node->stack_a == NULL)
-		return (free(sorted_node), free(sorted_node->stack_a), NULL);
-	reverse_sort_stack(sorted_node->stack_b);
-	sorted_node->adjacent_nodes = NULL;
-	sorted_node->prev_node = NULL;
-	sorted_node->last_action = NONE;
-	return (sorted_node);
-}
-
-static int	calculate_cost(t_node *node, t_node *next_node)
+static double	calculate_cost(t_node *node, t_node *next_node)
 {
 	t_action	act;
-	int			cost;
+	double			cost;
 
 	act = next_node->last_action;
 	if (act == SB || act == RB || act == RRB)
@@ -59,19 +37,60 @@ static int	calculate_cost(t_node *node, t_node *next_node)
 	return (cost);
 }
 
-static int	calculate_heuristic(t_node *node, t_node *sorted_node)
+double	spearson(int *arr, int size)
 {
-	(void)node;
-	(void)sorted_node;
-	return (0);
+	double	sum_d_square;
+	double	result;
+	int		tmp;
+	int		i;
+
+	i = 1;
+	sum_d_square = 0;
+	while (i <= size)
+	{
+		tmp = arr[i - 1] - i;
+		sum_d_square += (double)(tmp * tmp);
+		i++;
+	}
+	result = 1 - (6 * sum_d_square) / (size * (size * size - 1));
+	if (result < 0)
+		result *= -1;
+	return (result);
 }
 
-static int	push_adjacent_nodes(t_pqueue *pqueue, t_node *cur_node, \
-								t_node *sorted_node)
+static double	calculate_heuristic(t_node *node)
+{
+	double	spearson_corr;
+	double	heuristic;
+	int		count;
+
+	count = 0;
+	while (node->stack_b->cur_size > 0)
+	{
+		pa(node);
+		count++;
+	}
+	spearson_corr = spearson(node->stack_a->arr, node->stack_a->size);
+	heuristic = (1 - spearson_corr);
+	heuristic *= 24.85 * node->stack_a->size;
+	if (node->stack_a->size <= 100)
+		heuristic *= 5;
+	else
+		heuristic *= 7;
+	while (count > 0)
+	{
+		pb(node);
+		count--;
+		heuristic += 1;
+	}
+	return (heuristic);
+}
+
+static int	push_adjacent_nodes(t_pqueue *pqueue, t_node *cur_node)
 {
 	t_node	**adjacent_nodes;
 	t_node	*adj_node;
-	int		priority;
+	double	priority;
 	int		i;
 
 	adjacent_nodes = get_adjacent_nodes(cur_node);
@@ -83,7 +102,7 @@ static int	push_adjacent_nodes(t_pqueue *pqueue, t_node *cur_node, \
 	{
 		adj_node = adjacent_nodes[i];
 		adj_node->cost = calculate_cost(cur_node, adj_node);
-		adj_node->heuristic = calculate_heuristic(adj_node, sorted_node);
+		adj_node->heuristic = calculate_heuristic(adj_node);
 		priority = adj_node->cost + adj_node->heuristic;
 		if (push_priority_queue(pqueue, adj_node, priority) == ERROR)
 			return (ERROR);
@@ -96,27 +115,23 @@ t_action	*a_star_search(t_node *start_node)
 {
 	t_pqueue	*pqueue;
 	t_node		*cur_node;
-	t_node		*sorted_node;
 	char		*actions;
 
 	pqueue = init_priority_queue();
 	if (pqueue == NULL)
 		return (NULL);
-	sorted_node = sort_node(start_node);
-	if (sorted_node == NULL)
+	if (assign_rank(start_node->stack_a) == ERROR)
 		return (free_priority_queue(pqueue, NULL), NULL);
 	if (push_priority_queue(pqueue, start_node, 0) == ERROR)
-		return (free_priority_queue(pqueue, NULL), free(sorted_node), NULL);
+		return (free_priority_queue(pqueue, NULL), NULL);
 	cur_node = (t_node *)pop_priority_queue(pqueue);
 	while (!isnodesorted(cur_node))
 	{
-		if (push_adjacent_nodes(pqueue, cur_node, sorted_node) == ERROR)
-			return (free_priority_queue(pqueue, NULL), \
-					free(sorted_node), NULL);
+		if (push_adjacent_nodes(pqueue, cur_node) == ERROR)
+			return (free_priority_queue(pqueue, NULL), NULL);
 		cur_node = (t_node *)pop_priority_queue(pqueue);
 	}
 	actions = get_sort_actions(cur_node);
 	free_priority_queue(pqueue, NULL);
-	free(sorted_node);
 	return (actions);
 }

@@ -29,7 +29,7 @@ t_stack	*clone_stack(t_stack *origin_stack);
 
 void	sort_stack(t_stack *stack);
 void	reverse_sort_stack(t_stack *stack);
-int		reset_index_stack(t_stack *stack, t_stack *sorted_stack);
+int		assign_rank(t_stack	*stack);
 
 void	push_stack(t_stack *origin, t_stack *dest);
 void	swap_stack(t_stack *stack);

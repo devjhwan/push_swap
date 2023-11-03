@@ -6,4 +6,4 @@ push_swap
 output
 trace*
 norm
-accumulate_actions.txt
+*.txt
