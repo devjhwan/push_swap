@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   free_hash.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/27 22:10:26 by junghwle          #+#    #+#             */
-/*   Updated: 2023/10/27 22:10:27 by junghwle         ###   ########.fr       */
+/*   Created: 2023/11/03 04:55:31 by junghwle          #+#    #+#             */
+/*   Updated: 2023/11/03 04:55:32 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "hash.h"
 
-# include <stdlib.h>
+void	free_hash(t_hash **hash, void (*delfunc)(void *))
+{
+	t_hash	*delhash;
+	t_hash	*tmp;
+	int		i;
 
-int		ft_putchar(int ch);
-int		ft_putstr(char *str);
-int		ft_putnbr(int num);
-void	*ft_calloc(size_t count, size_t size)
-void	*ft_realloc(void *ptr, size_t newsize);
-void	ft_bzero(void *arr, size_t size);
-void	*ft_memcpy(void *dest, const void *src, size_t size);
-int		ft_pow(int nb, int exp);
-int		ft_abs(int nb);
-
-#endif
+	i = 0;
+	while (i < HASH_SIZE)
+	{
+		tmp = hash[i];
+		while (tmp != NULL)
+		{
+			delhash = tmp;
+			tmp = tmp->next;
+			if (delfunc != NULL)
+				delfunc(delhash->content);
+			free(delhash);
+		}
+		i++;
+	}
+	free(hash);
+}
