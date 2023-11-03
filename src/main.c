@@ -76,14 +76,19 @@ static void	sort_push_swap(t_node *node)
 int	main(int argc, char **argv)
 {
 	t_node		*node;
+	t_hash		**hash;
 
 	if (argc < 2)
 		return (0);
 	node = init_node(argv);
 	if (node == NULL)
 		return (0);
+	hash = init_hash();
+	if (hash == NULL)
+		return (free_node(node), 0);
 	if (isnodesorted(node) == 0)
 		sort_push_swap(node);
 	free_node(node);
+	free_hash(hash, NULL);
 	return (0);
 }

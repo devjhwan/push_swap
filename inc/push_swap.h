@@ -14,7 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "stack.h"
-# include <stdio.h>
+# include "hash.h"
 
 typedef char	t_action;
 

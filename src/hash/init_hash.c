@@ -18,7 +18,7 @@ t_hash	**init_hash(void)
 {
 	t_hash	**hash;
 
-	hash = (t_hash **)ft_calloc(1000000, sizeof(t_hash *));
+	hash = (t_hash **)ft_calloc(HASH_SIZE, sizeof(t_hash *));
 	if (hash == NULL)
 		return (NULL);
 	return (hash);

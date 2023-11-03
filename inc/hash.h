@@ -19,6 +19,9 @@ typedef struct s_hash
 	struct s_hash	*next;
 }	t_hash;
 
-# define HASH_SIZE 1000000
+# define HASH_SIZE 10000000
+
+t_hash	**init_hash(void);
+void	free_hash(t_hash **hash, void (*delfunc)(void *));
 
 #endif
