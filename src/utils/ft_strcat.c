@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_hash.c                                        :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 04:46:02 by junghwle          #+#    #+#             */
-/*   Updated: 2023/11/03 04:46:04 by junghwle         ###   ########.fr       */
+/*   Created: 2023/11/03 05:27:20 by junghwle          #+#    #+#             */
+/*   Updated: 2023/11/03 05:27:21 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hash.h"
 #include "utils.h"
+#include <stdlib.h>
 
-t_hash	**init_hash(void)
+char	*ft_strcat(char *str1, const char *str2)
 {
-	t_hash	**hash;
+	size_t	i;
+	size_t	j;
 
-	hash = (t_hash **)ft_calloc(HASH_SIZE, sizeof(t_hash *));
-	if (hash == NULL)
-		return (NULL);
-	return (hash);
+	i = ft_strlen(str1);
+	j = 0;
+	while (str2[j] != '\0')
+		str1[i++] = str2[j++];
+	str1[i] = '\0';
+	return (str1);
 }

@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_hash.c                                        :+:      :+:    :+:   */
+/*   check_hash.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 04:46:02 by junghwle          #+#    #+#             */
-/*   Updated: 2023/11/03 04:46:04 by junghwle         ###   ########.fr       */
+/*   Created: 2023/11/03 05:15:56 by junghwle          #+#    #+#             */
+/*   Updated: 2023/11/03 05:15:57 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash.h"
-#include "utils.h"
 
-t_hash	**init_hash(void)
+int	check_hash(t_hash **hash, const unsigned int key, const void *value, \
+				int (*isequal)(void *, void *))
 {
-	t_hash	**hash;
+	t_hash	*curnode;
 
-	hash = (t_hash **)ft_calloc(HASH_SIZE, sizeof(t_hash *));
-	if (hash == NULL)
-		return (NULL);
-	return (hash);
+	curnode = hash[key];
+	while (curnode != NULL)
+	{
+		if (isequal(curnode->content, (void *)value))
+			return (1);
+		curnode = curnode->next;
+	}
+	return (0);
 }

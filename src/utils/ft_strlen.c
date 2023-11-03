@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_hash.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junghwle <junghwle@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 04:46:02 by junghwle          #+#    #+#             */
-/*   Updated: 2023/11/03 04:46:04 by junghwle         ###   ########.fr       */
+/*   Created: 2023/11/03 05:28:10 by junghwle          #+#    #+#             */
+/*   Updated: 2023/11/03 05:28:12 by junghwle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hash.h"
-#include "utils.h"
+#include <stdlib.h>
 
-t_hash	**init_hash(void)
+size_t	ft_strlen(const char *str)
 {
-	t_hash	**hash;
+	int	len;
 
-	hash = (t_hash **)ft_calloc(HASH_SIZE, sizeof(t_hash *));
-	if (hash == NULL)
-		return (NULL);
-	return (hash);
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	return (len);
 }

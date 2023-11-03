@@ -13,6 +13,8 @@
 #ifndef HASH_H
 # define HASH_H
 
+# include <stdlib.h>
+
 typedef struct s_hash
 {
 	void			*content;
@@ -23,5 +25,8 @@ typedef struct s_hash
 
 t_hash	**init_hash(void);
 void	free_hash(t_hash **hash, void (*delfunc)(void *));
+int		insert_hash(t_hash **hash, const unsigned int key, const void *value);
+int		check_hash(t_hash **hash, const unsigned int key, const void *value, \
+					int (*isequal)(void *, void *));
 
 #endif

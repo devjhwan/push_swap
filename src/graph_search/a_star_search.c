@@ -15,7 +15,6 @@
 #include "stack.h"
 #include "utils.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 #define SUCCESS 0
 #define ERROR 1

@@ -28,10 +28,11 @@ STACK_SRC=init_stack.c clone_stack.c free_stack.c stack_visualizer.c \
 		  sort_stack.c assign_rank.c
 QUEUE_SRC=init_queue.c free_queue.c push_queue.c pop_queue.c
 UTILS_SRC=ft_print.c ft_realloc.c ft_memcpy.c ft_pow.c ft_abs.c \
-		  ft_bzero.c ft_calloc.c
+		  ft_bzero.c ft_calloc.c ft_strlen.c ft_strcat.c
 NODE_SRC=init_node.c free_node.c isnodesorted.c clone_node.c \
-		 get_adjacent_nodes.c find_sorted_node.c get_sort_actions.c
-HASH_SRC=init_hash.c free_hash.c
+		 get_adjacent_nodes.c find_sorted_node.c get_sort_actions.c \
+		 get_hash_key.c isequal_node.c
+HASH_SRC=init_hash.c free_hash.c insert_hash.c check_hash.c
 GRAPH_SEARCH_SRC=breadth_first_search.c a_star_search.c
 PRIORITY_QUEUE_SRC=init_priority_queue.c free_priority_queue.c \
 				   push_priority_queue.c pop_priority_queue.c

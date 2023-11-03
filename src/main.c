@@ -57,13 +57,13 @@ static void	print_actions(t_action *actions)
 	}
 }
 
-static void	sort_push_swap(t_node *node)
+static void	sort_push_swap(t_node *node, t_hash **hash)
 {
 	t_action	*actions;
 
 	actions = NULL;
-	if (node->stack_a->size <= 0)
-		actions = breadth_first_search(node);
+	if (node->stack_a->size <= 5)
+		actions = breadth_first_search(node, hash);
 	else
 		actions = a_star_search(node);
 	if (actions != NULL)
@@ -87,7 +87,7 @@ int	main(int argc, char **argv)
 	if (hash == NULL)
 		return (free_node(node), 0);
 	if (isnodesorted(node) == 0)
-		sort_push_swap(node);
+		sort_push_swap(node, hash);
 	free_node(node);
 	free_hash(hash, NULL);
 	return (0);

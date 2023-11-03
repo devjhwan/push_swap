@@ -17,10 +17,12 @@
 #define SUCCESS 0
 #define ERROR 1
 
-static int	push_adjacent_nodes(t_queue *queue, t_node *cur_node)
+static int	push_adjacent_nodes(t_queue *queue, t_node *cur_node, \
+								t_hash **hash)
 {
-	t_node	**adjacent_nodes;
-	int		i;
+	t_node			**adjacent_nodes;
+	int				i;
+	unsigned int	hashkey;
 
 	adjacent_nodes = get_adjacent_nodes(cur_node);
 	if (adjacent_nodes == NULL)
@@ -29,6 +31,9 @@ static int	push_adjacent_nodes(t_queue *queue, t_node *cur_node)
 	i = 0;
 	while (adjacent_nodes[i] != NULL)
 	{
+		hashkey = get_hash_key(adjacent_nodes[i]);
+		if (check_hash(hash, hashkey, adjacent_nodes[i], isequal_node))
+			continue ;
 		if (push_queue(queue, adjacent_nodes[i]) == ERROR)
 			return (ERROR);
 		i++;
@@ -36,7 +41,7 @@ static int	push_adjacent_nodes(t_queue *queue, t_node *cur_node)
 	return (SUCCESS);
 }
 
-t_action	*breadth_first_search(t_node *start_node)
+t_action	*breadth_first_search(t_node *start_node, t_hash **hash)
 {
 	t_queue	*queue;
 	t_node	*cur_node;
@@ -53,7 +58,7 @@ t_action	*breadth_first_search(t_node *start_node)
 	while (queue->size > 0 && sorted_node == NULL)
 	{
 		cur_node = (t_node *)pop_queue(queue);
-		if (push_adjacent_nodes(queue, cur_node) == ERROR)
+		if (push_adjacent_nodes(queue, cur_node, hash) == ERROR)
 			return (free_queue(queue, NULL), NULL);
 		sorted_node = find_sorted_node(cur_node->adjacent_nodes);
 	}
