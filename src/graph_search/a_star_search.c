@@ -23,7 +23,7 @@
 static double	calculate_cost(t_node *node, t_node *next_node)
 {
 	t_action	act;
-	double			cost;
+	double		cost;
 
 	act = next_node->last_action;
 	if (act == SB || act == RB || act == RRB)

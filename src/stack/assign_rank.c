@@ -31,7 +31,7 @@ static void	assign_sorted_index(t_stack *origin, t_stack *sorted_stack, \
 			if (sorted_stack->arr[i] == ref_stack->arr[j])
 			{
 				origin->arr[j] = i + 1;
-				break;
+				break ;
 			}
 			j++;
 		}
@@ -43,7 +43,7 @@ int	assign_rank(t_stack	*stack)
 {
 	t_stack	*sorted_stack;
 	t_stack	*ref_stack;
-	
+
 	sorted_stack = clone_stack(stack);
 	if (sorted_stack == NULL)
 		return (ERROR);
