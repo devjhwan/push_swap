@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "hash.h"
 
 #define HASH_PRIME1 31
 #define HASH_PRIME2	37
@@ -33,5 +34,6 @@ unsigned int	get_hash_key(t_node *node)
 		hashkey = (hashkey * HASH_PRIME2) + node->stack_b->arr[i];
 		i++;
 	}
+	hashkey %= HASH_SIZE;
 	return (hashkey);
 }

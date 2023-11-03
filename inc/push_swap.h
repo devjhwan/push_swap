@@ -55,7 +55,7 @@ unsigned int	get_hash_key(t_node *node);
 int				isequal_node(void *n1, void *n2);
 
 t_action		*breadth_first_search(t_node *start_node, t_hash **hash);
-t_action		*a_star_search(t_node *start_node);
+t_action		*a_star_search(t_node *start_node, t_hash **hash);
 
 void			pa(t_node *node);
 void			pb(t_node *node);

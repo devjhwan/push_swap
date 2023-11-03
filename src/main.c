@@ -65,7 +65,7 @@ static void	sort_push_swap(t_node *node, t_hash **hash)
 	if (node->stack_a->size <= 5)
 		actions = breadth_first_search(node, hash);
 	else
-		actions = a_star_search(node);
+		actions = a_star_search(node, hash);
 	if (actions != NULL)
 	{
 		print_actions(actions);

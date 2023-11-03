@@ -36,30 +36,30 @@ static double	calculate_cost(t_node *node, t_node *next_node)
 	return (cost);
 }
 
-double	spearson(int *arr, int size)
+static double	spearman(t_stack *stack, int *arr, int size)
 {
-	double	sum_d_square;
-	double	result;
+	double	spearman_corr;
+	int		rank;
 	int		tmp;
 	int		i;
 
-	i = 1;
-	sum_d_square = 0;
-	while (i <= size)
+	i = stack->first;
+	spearman_corr = 0;
+	rank = 1;
+	while (rank <= size)
 	{
-		tmp = arr[i - 1] - i;
-		sum_d_square += (double)(tmp * tmp);
-		i++;
+		tmp = arr[i] - rank;
+		spearman_corr += (double)(tmp * tmp);
+		i = (i + 1) % size;
+		rank++;
 	}
-	result = 1 - (6 * sum_d_square) / (size * (size * size - 1));
-	if (result < 0)
-		result *= -1;
-	return (result);
+	spearman_corr = 1 - (6 * spearman_corr) / (size * (size * size - 1));
+	return (spearman_corr);
 }
 
 static double	calculate_heuristic(t_node *node)
 {
-	double	spearson_corr;
+	double	spearman_corr;
 	double	heuristic;
 	int		count;
 
@@ -69,13 +69,9 @@ static double	calculate_heuristic(t_node *node)
 		pa(node);
 		count++;
 	}
-	spearson_corr = spearson(node->stack_a->arr, node->stack_a->size);
-	heuristic = (1 - spearson_corr);
-	heuristic *= 24.85 * node->stack_a->size;
-	if (node->stack_a->size <= 100)
-		heuristic *= 5;
-	else
-		heuristic *= 7;
+	spearman_corr = spearman(node->stack_a, node->stack_a->arr, node->stack_a->size);
+	heuristic = 1 - spearman_corr;
+	heuristic *= 125 * node->stack_a->size;
 	while (count > 0)
 	{
 		pb(node);
@@ -85,7 +81,8 @@ static double	calculate_heuristic(t_node *node)
 	return (heuristic);
 }
 
-static int	push_adjacent_nodes(t_pqueue *pqueue, t_node *cur_node)
+static int	push_adjacent_nodes(t_pqueue *pqueue, t_node *cur_node, \
+								t_hash **hash)
 {
 	t_node	**adjacent_nodes;
 	t_node	*adj_node;
@@ -99,6 +96,9 @@ static int	push_adjacent_nodes(t_pqueue *pqueue, t_node *cur_node)
 	i = 0;
 	while (adjacent_nodes[i] != NULL)
 	{
+		if (check_hash(hash, get_hash_key(adjacent_nodes[i]), \
+						adjacent_nodes[i], isequal_node))
+			continue ;
 		adj_node = adjacent_nodes[i];
 		adj_node->cost = calculate_cost(cur_node, adj_node);
 		adj_node->heuristic = calculate_heuristic(adj_node);
@@ -110,7 +110,7 @@ static int	push_adjacent_nodes(t_pqueue *pqueue, t_node *cur_node)
 	return (SUCCESS);
 }
 
-t_action	*a_star_search(t_node *start_node)
+t_action	*a_star_search(t_node *start_node, t_hash **hash)
 {
 	t_pqueue	*pqueue;
 	t_node		*cur_node;
@@ -126,7 +126,7 @@ t_action	*a_star_search(t_node *start_node)
 	cur_node = (t_node *)pop_priority_queue(pqueue);
 	while (!isnodesorted(cur_node))
 	{
-		if (push_adjacent_nodes(pqueue, cur_node) == ERROR)
+		if (push_adjacent_nodes(pqueue, cur_node, hash) == ERROR)
 			return (free_priority_queue(pqueue, NULL), NULL);
 		cur_node = (t_node *)pop_priority_queue(pqueue);
 	}

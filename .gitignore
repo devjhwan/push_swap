@@ -7,4 +7,5 @@ output
 trace*
 norm
 *.txt
-./tester/checker_linux
+tester/checker_linux
+tester/rsg
