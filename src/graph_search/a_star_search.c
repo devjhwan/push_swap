@@ -69,7 +69,8 @@ static double	calculate_heuristic(t_node *node)
 		pa(node);
 		count++;
 	}
-	spearman_corr = spearman(node->stack_a, node->stack_a->arr, node->stack_a->size);
+	spearman_corr = spearman(node->stack_a, node->stack_a->arr, \
+								node->stack_a->size);
 	heuristic = 1 - spearman_corr;
 	heuristic *= 125 * node->stack_a->size;
 	while (count > 0)

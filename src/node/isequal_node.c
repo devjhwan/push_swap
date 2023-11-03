@@ -16,7 +16,7 @@ int	isequal_node(void *n1, void *n2)
 {
 	t_node	*node1;
 	t_node	*node2;
-	int	i;
+	int		i;
 
 	node1 = (t_node *)n1;
 	node2 = (t_node *)n2;
