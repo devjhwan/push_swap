@@ -79,7 +79,7 @@ static double	calculate_heuristic(t_node *node)
 		count--;
 		heuristic += 1;
 	}
-	return (heuristic);
+	return (0);
 }
 
 static int	push_adjacent_nodes(t_pqueue *pqueue, t_node *cur_node, \
