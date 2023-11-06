@@ -20,5 +20,6 @@ int		ft_putstr(char *str);
 int		ft_putnbr(int num);
 void	*ft_calloc(size_t count, size_t size);
 void	*ft_realloc(void *ptr, size_t newsize);
+double	ft_log2(int x);
 
 #endif
