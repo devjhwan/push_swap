@@ -27,7 +27,7 @@ STACK_SRC=init_stack.c clone_stack.c free_stack.c stack_visualizer.c \
 		  push_stack.c swap_stack.c rotate_stack.c reverse_rotate_stack.c \
 		  sort_stack.c assign_rank.c
 QUEUE_SRC=init_queue.c free_queue.c push_queue.c pop_queue.c
-UTILS_SRC=ft_print.c ft_realloc.c ft_calloc.c
+UTILS_SRC=ft_print.c ft_realloc.c ft_calloc.c ft_log2.c
 NODE_SRC=init_node.c free_node.c isnodesorted.c clone_node.c \
 		 get_adjacent_nodes.c find_sorted_node.c get_sort_actions.c \
 		 get_hash_key.c isequal_node.c

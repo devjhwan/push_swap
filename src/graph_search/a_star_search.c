@@ -19,6 +19,79 @@
 #define SUCCESS 0
 #define ERROR 1
 
+static double	calculate_heuristic(t_stack *stack_a, t_stack *stack_b)
+{
+	double	heuristic;
+
+	(void)stack_a;
+	(void)stack_b;
+	heuristic = 0;
+	return (heuristic);
+}
+
+static int	push_adjacent_nodes(t_pqueue *pqueue, t_node *cur_node, \
+								t_hash **hash)
+{
+	t_node	**adjacent_nodes;
+	t_node	*adj_node;
+	double	priority;
+	int		i;
+
+	adjacent_nodes = get_adjacent_nodes(cur_node);
+	if (adjacent_nodes == NULL)
+		return (ERROR);
+	cur_node->adjacent_nodes = adjacent_nodes;
+	i = 0;
+	while (adjacent_nodes[i] != NULL)
+	{
+		if (check_hash(hash, get_hash_key(adjacent_nodes[i]), \
+						adjacent_nodes[i], isequal_node))
+			continue ;
+		adj_node = adjacent_nodes[i];
+		adj_node->cost += 1;
+		adj_node->heuristic = calculate_heuristic(adj_node->stack_a, \
+													adj_node->stack_b);
+		priority = adj_node->cost + adj_node->heuristic;
+		if (push_priority_queue(pqueue, adj_node, priority) == ERROR)
+			return (ERROR);
+		i++;
+	}
+	return (SUCCESS);
+}
+
+t_action	*a_star_search(t_node *start_node, t_hash **hash)
+{
+	t_pqueue	*pqueue;
+	t_node		*cur_node;
+	char		*actions;
+	int			debug;
+
+	pqueue = init_priority_queue();
+	if (pqueue == NULL)
+		return (NULL);
+	if (assign_rank(start_node->stack_a) == ERROR)
+		return (free_priority_queue(pqueue, NULL), NULL);
+	if (push_priority_queue(pqueue, start_node, 0) == ERROR)
+		return (free_priority_queue(pqueue, NULL), NULL);
+	cur_node = (t_node *)pop_priority_queue(pqueue);
+	while (!isnodesorted(cur_node))
+	{
+		print_stack(cur_node->stack_a);
+		print_stack(cur_node->stack_b);
+		printf("cost      %f\n", cur_node->cost);
+		printf("heuristic %f\n", cur_node->heuristic);
+		scanf("%d", &debug);
+		(void)debug;
+		if (push_adjacent_nodes(pqueue, cur_node, hash) == ERROR)
+			return (free_priority_queue(pqueue, NULL), NULL);
+		cur_node = (t_node *)pop_priority_queue(pqueue);
+	}
+	actions = get_sort_actions(cur_node);
+	free_priority_queue(pqueue, NULL);
+	return (actions);
+}
+
+/*
 static double	calculate_cost(t_node *node, t_node *next_node)
 {
 	t_action	act;
@@ -81,57 +154,4 @@ static double	calculate_heuristic(t_node *node)
 	}
 	return (0);
 }
-
-static int	push_adjacent_nodes(t_pqueue *pqueue, t_node *cur_node, \
-								t_hash **hash)
-{
-	t_node	**adjacent_nodes;
-	t_node	*adj_node;
-	double	priority;
-	int		i;
-
-	adjacent_nodes = get_adjacent_nodes(cur_node);
-	if (adjacent_nodes == NULL)
-		return (ERROR);
-	cur_node->adjacent_nodes = adjacent_nodes;
-	i = 0;
-	while (adjacent_nodes[i] != NULL)
-	{
-		if (check_hash(hash, get_hash_key(adjacent_nodes[i]), \
-						adjacent_nodes[i], isequal_node))
-			continue ;
-		adj_node = adjacent_nodes[i];
-		adj_node->cost = calculate_cost(cur_node, adj_node);
-		adj_node->heuristic = calculate_heuristic(adj_node);
-		priority = adj_node->cost + adj_node->heuristic;
-		if (push_priority_queue(pqueue, adj_node, priority) == ERROR)
-			return (ERROR);
-		i++;
-	}
-	return (SUCCESS);
-}
-
-t_action	*a_star_search(t_node *start_node, t_hash **hash)
-{
-	t_pqueue	*pqueue;
-	t_node		*cur_node;
-	char		*actions;
-
-	pqueue = init_priority_queue();
-	if (pqueue == NULL)
-		return (NULL);
-	if (assign_rank(start_node->stack_a) == ERROR)
-		return (free_priority_queue(pqueue, NULL), NULL);
-	if (push_priority_queue(pqueue, start_node, 0) == ERROR)
-		return (free_priority_queue(pqueue, NULL), NULL);
-	cur_node = (t_node *)pop_priority_queue(pqueue);
-	while (!isnodesorted(cur_node))
-	{
-		if (push_adjacent_nodes(pqueue, cur_node, hash) == ERROR)
-			return (free_priority_queue(pqueue, NULL), NULL);
-		cur_node = (t_node *)pop_priority_queue(pqueue);
-	}
-	actions = get_sort_actions(cur_node);
-	free_priority_queue(pqueue, NULL);
-	return (actions);
-}
+*/

@@ -16,6 +16,8 @@
 # include "stack.h"
 # include "hash.h"
 
+#include <stdio.h>
+
 typedef char	t_action;
 
 # define NONE 0
